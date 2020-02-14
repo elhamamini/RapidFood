@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
 const chalk = require('chalk');
-const axios = require('axios');
-const { Recipe } = require('./db/index');
+const session = require('express-session');
+const { User } = require('./db/index');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -10,23 +10,42 @@ app.use((req, res, next) => {
   console.log(chalk.cyan(`${new Date().toString()}: ${req.path}`));
   next();
 });
-// app.get('/api/recipes', (req, res, next) => {
-//   const YOURAPIKEY = 'af623f325e5a4d308b199b64899c3b9b';
-//   //   const { indegrints } = req.body;
-//   axios
-//     .get(
-//       `https://api.spoonacular.com/recipes/findByIngredients?ingredients=bananas,+flour,+sugar&number=2&apiKey=${YOURAPIKEY}`
-//     )
-//     .then(resp => {
-//       console.log('recipeeeeee', resp.data);
-//       res.send(resp.data[0]);
-//     })
-//     .catch(e => {
-//       console.error(e);
-//     });
-// });
+app.use(
+  session({
+    secret: 'hopethisworks',
+    resave: false,
+    cookie: {
+      maxAge: 7.2 * Math.exp(10, 6), // 2 hours
+    },
+  })
+);
+
+// session logging
+app.use((req, res, next) => {
+  // console.log('session', req.session);
+  next();
+});
+
+app.use((req, res, next) => {
+  User.findByPk(req.session.userId)
+    .then(userOrNull => {
+      if (!userOrNull) req.loggedIn = false;
+      else {
+        req.loggedIn = true;
+        req.user = userOrNull;
+      }
+      next();
+    })
+    .catch(e => {
+      console.log('error searching for a user by session.userId');
+      console.error(e);
+      next();
+    });
+});
+app.use('/auth', require('./auth'));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/api', require('./api'));
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });

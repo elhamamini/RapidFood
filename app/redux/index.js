@@ -1,7 +1,17 @@
 import { combineReducers } from 'redux';
 import recipeReducer from './recipe';
+import instructionReducer from './instruction';
+import recipeDetailsReducer from './oneRecipe';
+import authenticationReducer from './authentication';
+import activeUserReducer from './activeUser';
+import favoritsReducer from './favorits';
 const appReduer = combineReducers({
-  recipe: recipeReducer,
+  recipes: recipeReducer,
+  recipe: recipeDetailsReducer,
+  instruction: instructionReducer,
+  authentication: authenticationReducer,
+  activeUser: activeUserReducer,
+  favorits: favoritsReducer,
 });
 
 export default appReduer;
