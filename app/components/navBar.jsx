@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import LocalDiningIcon from '@material-ui/icons/LocalDining';
 import { connect } from 'react-redux';
+import { logOutAttempt } from '../redux/authentication';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,10 +35,6 @@ function MenuAppBar(props) {
   const open = Boolean(anchorEl);
   const { authentication } = props;
   const { isLoggedIn } = authentication;
-
-  const handleChange = event => {
-    setAuth(event.target.checked);
-  };
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -95,8 +92,15 @@ function MenuAppBar(props) {
                 <Link to="/favorites">
                   <MenuItem onClick={handleClose}>Favorits</MenuItem>
                 </Link>
-                <Link to="/signout">
-                  <MenuItem onClick={handleClose}>sign out</MenuItem>
+                <Link to="/">
+                  <MenuItem
+                    onClick={() => {
+                      handleClose();
+                      props.signout();
+                    }}
+                  >
+                    sign out
+                  </MenuItem>
                 </Link>
               </Menu>
             ) : (
@@ -129,5 +133,8 @@ function MenuAppBar(props) {
     </div>
   );
 }
+const mapDispatchToProps = dispatch => ({
+  signout: () => dispatch(logOutAttempt()),
+});
 const mapStateToProp = ({ authentication }) => ({ authentication });
-export default connect(mapStateToProp)(MenuAppBar);
+export default connect(mapStateToProp, mapDispatchToProps)(MenuAppBar);

@@ -2,6 +2,7 @@ import axios from 'axios';
 export const SIGN_IN = Symbol('sign in');
 export const SIGN_OUT = Symbol('sign out');
 export const LOG_IN_ERROR = Symbol('log in error');
+export const SIGN_UP = Symbol('sign up');
 
 // action creators
 const signIn = data => {
@@ -10,6 +11,9 @@ const signIn = data => {
     isLoggedIn: true,
     activeUser: data,
   };
+};
+const signUp = data => {
+  return {};
 };
 
 const signOut = () => {

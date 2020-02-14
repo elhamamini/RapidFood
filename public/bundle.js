@@ -754,6 +754,8 @@ var _LocalDining2 = _interopRequireDefault(_LocalDining);
 
 var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
+var _authentication = __webpack_require__(/*! ../redux/authentication */ "./app/redux/authentication.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var useStyles = (0, _styles.makeStyles)(function (theme) {
@@ -785,10 +787,6 @@ function MenuAppBar(props) {
   var authentication = props.authentication;
   var isLoggedIn = authentication.isLoggedIn;
 
-
-  var handleChange = function handleChange(event) {
-    setAuth(event.target.checked);
-  };
 
   var handleMenu = function handleMenu(event) {
     setAnchorEl(event.currentTarget);
@@ -869,10 +867,15 @@ function MenuAppBar(props) {
             ),
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: '/signout' },
+              { to: '/' },
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: handleClose },
+                {
+                  onClick: function onClick() {
+                    handleClose();
+                    props.signout();
+                  }
+                },
                 'sign out'
               )
             )
@@ -917,11 +920,18 @@ function MenuAppBar(props) {
     )
   );
 }
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    signout: function signout() {
+      return dispatch((0, _authentication.logOutAttempt)());
+    }
+  };
+};
 var mapStateToProp = function mapStateToProp(_ref) {
   var authentication = _ref.authentication;
   return { authentication: authentication };
 };
-exports.default = (0, _reactRedux.connect)(mapStateToProp)(MenuAppBar);
+exports.default = (0, _reactRedux.connect)(mapStateToProp, mapDispatchToProps)(MenuAppBar);
 
 /***/ }),
 
@@ -1238,6 +1248,10 @@ var _test = __webpack_require__(/*! ./test */ "./app/components/test.jsx");
 
 var _test2 = _interopRequireDefault(_test);
 
+var _store = __webpack_require__(/*! ../store */ "./app/store.js");
+
+var _store2 = _interopRequireDefault(_store);
+
 var _listOfRecipes = __webpack_require__(/*! ./listOfRecipes */ "./app/components/listOfRecipes.jsx");
 
 var _listOfRecipes2 = _interopRequireDefault(_listOfRecipes);
@@ -1250,6 +1264,10 @@ var _login = __webpack_require__(/*! ./login */ "./app/components/login.jsx");
 
 var _login2 = _interopRequireDefault(_login);
 
+var _signup = __webpack_require__(/*! ./signup */ "./app/components/signup.jsx");
+
+var _signup2 = _interopRequireDefault(_signup);
+
 var _navBar = __webpack_require__(/*! ./navBar */ "./app/components/navBar.jsx");
 
 var _navBar2 = _interopRequireDefault(_navBar);
@@ -1257,6 +1275,8 @@ var _navBar2 = _interopRequireDefault(_navBar);
 var _favorits = __webpack_require__(/*! ./favorits */ "./app/components/favorits.jsx");
 
 var _favorits2 = _interopRequireDefault(_favorits);
+
+var _authentication = __webpack_require__(/*! ../redux/authentication */ "./app/redux/authentication.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1285,6 +1305,10 @@ var Root = function (_Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _context.next = 2;
+                return _store2.default.dispatch((0, _authentication.initialLogInAttempt)());
+
+              case 2:
               case 'end':
                 return _context.stop();
             }
@@ -1315,7 +1339,8 @@ var Root = function (_Component) {
             _react2.default.createElement(_reactRouterDom.Route, { path: '/recipeslist', component: _listOfRecipes2.default, exact: true }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/recipedetails', component: _recipeDetailsPage2.default, exact: true }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _login2.default, exact: true }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/favorites', component: _favorits2.default, exact: true })
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/favorites', component: _favorits2.default, exact: true }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', component: _signup2.default, exact: true })
           )
         )
       );
@@ -1326,6 +1351,291 @@ var Root = function (_Component) {
 }(_react.Component);
 
 exports.default = Root;
+
+/***/ }),
+
+/***/ "./app/components/signup.jsx":
+/*!***********************************!*\
+  !*** ./app/components/signup.jsx ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _core = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+
+var _users = __webpack_require__(/*! ../redux/users */ "./app/redux/users.js");
+
+var _authentication = __webpack_require__(/*! ../redux/authentication */ "./app/redux/authentication.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SignUp = function (_Component) {
+  _inherits(SignUp, _Component);
+
+  function SignUp() {
+    _classCallCheck(this, SignUp);
+
+    var _this = _possibleConstructorReturn(this, (SignUp.__proto__ || Object.getPrototypeOf(SignUp)).call(this));
+
+    _this.handleChange = function (_ref) {
+      var _ref$target = _ref.target,
+          value = _ref$target.value,
+          name = _ref$target.name;
+
+      _this.setState(_defineProperty({}, name, value));
+
+      if (name === 'email') {
+        if (value.length > 0) _this.setState({ emailHelper: '', emailErr: false });else _this.setState({
+          emailHelper: 'Email cannot be empty',
+          emailErr: true
+        });
+      }
+      if (name === 'name') {
+        if (value.length > 0) _this.setState({ nameHelper: '', nameErr: false });else _this.setState({
+          nameHelper: 'Name cannot be empty',
+          nameErr: true
+        });
+      }
+
+      if (name === 'password') {
+        if (value.length > 0) _this.setState({ passwordHelper: '', passwordErr: false });else _this.setState({
+          passwordHelper: 'Password cannot be empty',
+          passwordErr: true
+        });
+      }
+    };
+
+    _this.onSubmit = function (ev) {
+      var _this$state = _this.state,
+          nameErr = _this$state.nameErr,
+          emailErr = _this$state.emailErr,
+          passwordErr = _this$state.passwordErr,
+          email = _this$state.email,
+          password = _this$state.password;
+
+      ev.preventDefault();
+      _this.props.createUser(_extends({}, _this.state)
+      // thunk this.state...
+      // deal with not passing shippingIsBilling
+      );
+
+      if (!nameErr && !emailErr && !passwordErr) {
+        _this.props.history.push('/');
+      }
+    };
+
+    _this.generateTextFields = function (id, label, err, helper, inputProps) {
+      return _react2.default.createElement(_core.TextField, {
+        inputProps: inputProps || '',
+        variant: 'outlined',
+        margin: 'normal',
+        required: true,
+        fullWidth: true,
+        onChange: _this.handleChange,
+        id: id,
+        name: id,
+        label: label,
+        error: _this.state[err] || null,
+        helperText: _this.state[helper] || null,
+        value: _this.state[id]
+      });
+    };
+
+    _this.state = {
+      name: '',
+      email: '',
+      password: '',
+      //validation handling
+      nameHelper: '',
+      nameErr: false,
+      emailHelper: '',
+      emailErr: false,
+      passwordHelper: '',
+      passwordErr: false
+    };
+    return _this;
+  }
+
+  _createClass(SignUp, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var isLoggedIn = this.props.authentication.isLoggedIn;
+
+      if (isLoggedIn) this.props.history.push('/');
+    }
+  }, {
+    key: 'render',
+
+
+    // handle errors
+
+    value: function render() {
+      var _this2 = this;
+
+      var generateTextFields = this.generateTextFields;
+
+      return _react2.default.createElement(
+        'div',
+        {
+          style: {
+            backgroundColor: 'lightGrey',
+            height: '40rem',
+            paddingTop: '5rem'
+          }
+        },
+        _react2.default.createElement(
+          _core.Container,
+          {
+            component: 'div',
+            maxWidth: 'sm',
+            style: {
+              marginTop: '3rem',
+              backgroundColor: 'lightPink',
+              width: '30rem',
+              height: '30rem'
+            }
+          },
+          _react2.default.createElement(_core.CssBaseline, null),
+          _react2.default.createElement(
+            'div',
+            {
+              style: {
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+              }
+            },
+            _react2.default.createElement(
+              _core.Typography,
+              { variant: 'h4', color: 'textSecondary', align: 'center' },
+              'Sign up'
+            ),
+            _react2.default.createElement(
+              'form',
+              {
+                style: {
+                  display: 'flex',
+                  flexDirection: 'column',
+                  with: '100%',
+                  padding: '1rem'
+                }
+              },
+              _react2.default.createElement(
+                _core.Grid,
+                { container: true, spacing: 2 },
+                _react2.default.createElement(
+                  _core.Grid,
+                  { item: true, xs: 12 },
+                  generateTextFields('name', 'Name', 'nameErr', 'nameHelper')
+                )
+              ),
+              _react2.default.createElement(
+                _core.Grid,
+                { container: true, spacing: 2 },
+                _react2.default.createElement(
+                  _core.Grid,
+                  { item: true, xs: 12 },
+                  generateTextFields('email', 'Email', 'emailErr', 'emailHelper')
+                ),
+                _react2.default.createElement(
+                  _core.Grid,
+                  { item: true, xs: 12 },
+                  _react2.default.createElement(_core.TextField, {
+                    variant: 'outlined',
+                    margin: 'none',
+                    required: true,
+                    fullWidth: true,
+                    id: 'password',
+                    name: 'password',
+                    label: 'password',
+                    type: 'password',
+                    value: this.state.password,
+                    onChange: this.handleChange
+                  })
+                )
+              ),
+              _react2.default.createElement(
+                _core.Button,
+                {
+                  variant: 'contained',
+                  type: 'submit',
+                  style: {
+                    marginTop: '6px',
+                    width: '7rem',
+                    marginLeft: '9rem'
+                  },
+                  onClick: function onClick() {
+                    return _this2.onSubmit(event);
+                  }
+                },
+                'Sign up'
+              ),
+              _react2.default.createElement(
+                _core.Grid,
+                { container: true, justify: 'flex-end', style: { margin: '6px' } },
+                _react2.default.createElement(
+                  _core.Grid,
+                  { item: true },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/login', style: { textDecoration: 'none' } },
+                    'Do you have an account? Log in'
+                  )
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return SignUp;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(_ref2) {
+  var authentication = _ref2.authentication;
+  return { authentication: authentication };
+};
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createUser: function createUser(user) {
+      return dispatch((0, _users.createUser)(user));
+    },
+    login: function login() {
+      return dispatch((0, _authentication.logInAttempt)());
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SignUp);
 
 /***/ }),
 
@@ -2293,6 +2603,114 @@ var recipeReducer = function recipeReducer() {
   }
 };
 exports.default = recipeReducer;
+
+/***/ }),
+
+/***/ "./app/redux/users.js":
+/*!****************************!*\
+  !*** ./app/redux/users.js ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.usersReducer = exports.updateUser = exports.removeUser = exports.createUser = exports.fetchUsers = undefined;
+
+var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+//action types
+var SET_ALLUSERS = 'SET_ALLUSERS';
+var ADD_USER = 'ADD_USER';
+
+//action creators
+var setUsers = function setUsers(users) {
+  return {
+    type: SET_ALLUSERS,
+    users: users
+  };
+};
+var addUser = function addUser(user) {
+  return {
+    type: ADD_USER,
+    user: user
+  };
+};
+
+//thunks
+var fetchUsers = exports.fetchUsers = function fetchUsers() {
+  return function (dispatch) {
+    return _axios2.default.get('/api/users').then(function (responses) {
+      return dispatch(setUsers(responses.data));
+    }).catch(function (e) {
+      return console.log('Error in thunk:', e);
+    });
+  };
+};
+
+var createUser = exports.createUser = function createUser(user) {
+  return function (dispatch) {
+    return _axios2.default.post('/api/users', user).then(function (response) {
+      console.log('create user thunk response data: ', response.data);
+      dispatch(addUser(response.data));
+    }).catch(function (e) {
+      return console.log('Error in thunk:', e);
+    });
+  };
+};
+var removeUser = exports.removeUser = function removeUser(id) {
+  return function (dispatch) {
+    return _axios2.default.delete('/api/users' + id).then(function (response) {
+      console.log(response);
+      return _axios2.default.get('/api/users').then(function (responses) {
+        return dispatch(fetchUsers(responses.data));
+      });
+    }).catch(function (e) {
+      return console.log('Error in thunk:', e.message);
+    });
+  };
+};
+var updateUser = exports.updateUser = function updateUser(userId, user) {
+  return function (dispatch) {
+    return _axios2.default.put('/api/users/' + userId, user).then(function (response) {
+      console.log(response);
+      return _axios2.default.get('/api/users/').then(function (response) {
+        return dispatch(fetchUsers(response.data));
+      });
+    }).catch(function (e) {
+      return console.log('Error in thunk:', e.message);
+    });
+  };
+};
+
+var initialState = [];
+
+var usersReducer = exports.usersReducer = function usersReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case SET_ALLUSERS:
+      return action.users;
+    case ADD_USER:
+      return [].concat(_toConsumableArray(state), [action.user]);
+
+    default:
+      return state;
+  }
+};
+
+exports.default = usersReducer;
 
 /***/ }),
 

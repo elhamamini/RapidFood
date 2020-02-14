@@ -101,7 +101,7 @@ class Login extends Component {
       >
         <Container
           component="div"
-          maxWidth="xs"
+          maxWidth="sm"
           style={{
             marginTop: '5rem',
             backgroundColor: 'lightPink',
