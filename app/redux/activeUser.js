@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SIGN_IN, SIGN_OUT } from './authentication.js';
+import { SIGN_IN, SIGN_OUT, SIGN_UP } from './authentication.js';
 // const SET_USER = Symbol('set_user');
 const EDIT_USER = Symbol('edit_user');
 const ADDTO_USER = 'ADDTO_USER';
@@ -78,6 +78,8 @@ const activeUserReducer = (state = initialState, action) => {
   const editedUser = action.editedUser;
   switch (action.type) {
     case SIGN_IN:
+      return activeUser;
+    case SIGN_UP:
       return activeUser;
     case ADDTO_USER:
       return action.userWithRecipeID;

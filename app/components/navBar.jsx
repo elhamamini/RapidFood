@@ -47,7 +47,7 @@ function MenuAppBar(props) {
   return (
     <div className={classes.root}>
       <FormGroup></FormGroup>
-      <AppBar position="static" style={{ backgroundColor: 'grey' }}>
+      <AppBar position="static" style={{ backgroundColor: '#bbab9b' }}>
         <Toolbar>
           <LocalDiningIcon />
           <Typography variant="h6" className={classes.title}>

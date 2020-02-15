@@ -16,17 +16,18 @@ router.get('/', (req, res, next) => {
     });
 });
 router.post('/', (req, res, next) => {
-  const listOfIngredients = Object.keys(req.body).filter(
-    indig => req.body[indig]
-  );
+  // const listOfIngredients = Object.keys(req.body).filter(
+  //   indig => req.body[indig]
+  // );
+  console.log('req.body', req.body);
 
   let listStr = '';
 
-  for (let i = 0; i < listOfIngredients.length; i++) {
+  for (let i = 0; i < req.body.length; i++) {
     if (i !== 0) {
       listStr += ',+';
     }
-    listStr += listOfIngredients[i];
+    listStr += req.body[i];
   }
 
   axios

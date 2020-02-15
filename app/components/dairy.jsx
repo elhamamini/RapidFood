@@ -14,8 +14,8 @@ class ChooseIngredient extends React.Component {
   constructor() {
     super();
     this.state = {
-      banana: false,
-      flour: false,
+      milk: false,
+      butter: false,
       avocado: false,
       milk: false,
       apple: false,
@@ -34,7 +34,7 @@ class ChooseIngredient extends React.Component {
     this.setState({ [event.target.value]: event.target.checked });
   }
   render() {
-    const { banana, flour, apple, avocado, beef, strawberry } = this.state;
+    const { milk, butter } = this.state;
     console.log(this.state, 'state');
     const { recipes } = this.props;
     console.log('rrrrrr', recipes);
@@ -46,62 +46,22 @@ class ChooseIngredient extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={apple}
+                  checked={milk}
                   onChange={this.handleChange}
-                  value="apple"
+                  value="milk"
                 />
               }
-              label="apple"
+              label="milk"
             />
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={beef}
+                  checked={butter}
                   onChange={this.handleChange}
-                  value="beef"
+                  value="butter"
                 />
               }
-              label="beef"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={strawberry}
-                  onChange={this.handleChange}
-                  value="strawberry"
-                />
-              }
-              label="strawberry"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={avocado}
-                  onChange={this.handleChange}
-                  value="avocado"
-                />
-              }
-              label="avocado"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={banana}
-                  onChange={this.handleChange}
-                  value="banana"
-                />
-              }
-              label="Banana"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={flour}
-                  onChange={this.handleChange}
-                  value="flour"
-                />
-              }
-              label="flour"
+              label="butter"
             />
           </FormGroup>
           <Button

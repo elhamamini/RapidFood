@@ -10,6 +10,9 @@ import InfoIcon from '@material-ui/icons/Info';
 import { recipeDetails } from '../redux/oneRecipe';
 import { setInstruction } from '../redux/instruction';
 class ListOfRecipes extends React.Component {
+  componentDidMount(){
+    
+  }
   render() {
     console.log('recepies', this.props.recipes);
     return (

@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import { createUser } from '../redux/users';
 import { logInAttempt } from '../redux/authentication';
+import { SignUpAttempt } from '../redux/authentication';
 
 class SignUp extends Component {
   constructor() {
@@ -79,6 +80,7 @@ class SignUp extends Component {
     });
 
     if (!nameErr && !emailErr && !passwordErr) {
+      this.props.login({ email, password });
       this.props.history.push('/');
     }
   };
@@ -204,7 +206,8 @@ const mapStateToProps = ({ authentication }) => ({ authentication });
 const mapDispatchToProps = dispatch => {
   return {
     createUser: user => dispatch(createUser(user)),
-    login: () => dispatch(logInAttempt()),
+    login: user => dispatch(logInAttempt(user)),
+    signup: user => dispatch(SignUpAttempt(user)),
   };
 };
 

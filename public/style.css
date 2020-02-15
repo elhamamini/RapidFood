@@ -18,3 +18,6 @@ main {
   justify-content: center;
   flex-wrap: wrap;
 }
+.d {
+  background-image: url('https://image.shutterstock.com/image-photo/ingredients-utensils-baking-on-pastel-260nw-1204445395.jpg');
+}

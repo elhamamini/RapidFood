@@ -273,6 +273,310 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
+/***/ "./app/components/home.jsx":
+/*!*********************************!*\
+  !*** ./app/components/home.jsx ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _styles = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+
+var _ExpansionPanel = __webpack_require__(/*! @material-ui/core/ExpansionPanel */ "./node_modules/@material-ui/core/esm/ExpansionPanel/index.js");
+
+var _ExpansionPanel2 = _interopRequireDefault(_ExpansionPanel);
+
+var _ExpansionPanelSummary = __webpack_require__(/*! @material-ui/core/ExpansionPanelSummary */ "./node_modules/@material-ui/core/esm/ExpansionPanelSummary/index.js");
+
+var _ExpansionPanelSummary2 = _interopRequireDefault(_ExpansionPanelSummary);
+
+var _ExpansionPanelDetails = __webpack_require__(/*! @material-ui/core/ExpansionPanelDetails */ "./node_modules/@material-ui/core/esm/ExpansionPanelDetails/index.js");
+
+var _ExpansionPanelDetails2 = _interopRequireDefault(_ExpansionPanelDetails);
+
+var _Typography = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
+
+var _Typography2 = _interopRequireDefault(_Typography);
+
+var _ExpandMore = __webpack_require__(/*! @material-ui/icons/ExpandMore */ "./node_modules/@material-ui/icons/ExpandMore.js");
+
+var _ExpandMore2 = _interopRequireDefault(_ExpandMore);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _FormLabel = __webpack_require__(/*! @material-ui/core/FormLabel */ "./node_modules/@material-ui/core/esm/FormLabel/index.js");
+
+var _FormLabel2 = _interopRequireDefault(_FormLabel);
+
+var _FormControl = __webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/esm/FormControl/index.js");
+
+var _FormControl2 = _interopRequireDefault(_FormControl);
+
+var _FormGroup = __webpack_require__(/*! @material-ui/core/FormGroup */ "./node_modules/@material-ui/core/esm/FormGroup/index.js");
+
+var _FormGroup2 = _interopRequireDefault(_FormGroup);
+
+var _FormControlLabel = __webpack_require__(/*! @material-ui/core/FormControlLabel */ "./node_modules/@material-ui/core/esm/FormControlLabel/index.js");
+
+var _FormControlLabel2 = _interopRequireDefault(_FormControlLabel);
+
+var _FormHelperText = __webpack_require__(/*! @material-ui/core/FormHelperText */ "./node_modules/@material-ui/core/esm/FormHelperText/index.js");
+
+var _FormHelperText2 = _interopRequireDefault(_FormHelperText);
+
+var _Checkbox = __webpack_require__(/*! @material-ui/core/Checkbox */ "./node_modules/@material-ui/core/esm/Checkbox/index.js");
+
+var _Checkbox2 = _interopRequireDefault(_Checkbox);
+
+var _Button = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _recipe = __webpack_require__(/*! ../redux/recipe */ "./app/redux/recipe.js");
+
+var _instruction = __webpack_require__(/*! ../redux/instruction */ "./app/redux/instruction.js");
+
+var _favorits = __webpack_require__(/*! ../redux/favorits */ "./app/redux/favorits.js");
+
+var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ "./node_modules/@material-ui/core/esm/Icon/index.js");
+
+var _Icon2 = _interopRequireDefault(_Icon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var dairies = ['american cheese', 'blue cheese', 'brie', 'butter', 'buttermilk', 'camembert cheese', 'cheddar', 'colby cheese', 'condensed milk', 'cottage cheese', 'cream', 'cream cheese', 'custard', 'edam cheese', 'egg', 'farmer cheese', 'feta', 'fontina', 'frosting', 'ghee', 'goat cheese', 'goat milk', 'gouda', 'gruyere', 'half and half', 'halloumi', 'hard cheese', 'ice cream', 'italian cheese', 'manchego', 'milk', 'monterey jack cheese', 'mozzarella', 'parmesan', 'pecorino cheese', 'pepper jack', 'pepperjack cheese', 'pizza cheese', 'powdered milk', 'aclette cheese', 'ricotta', 'soft cheese', 'sour cream', 'swiss cheese', 'whipped cream', 'yogurt'];
+var vegtables = ['artichoke', 'artichoke heart', 'arugula', 'asparagus', 'avocado', 'bamboo shoot', 'basil', 'bean sprouts', 'beet', 'bell pepper', 'bok choy', 'broccoli', 'broccoli rabe', 'brussels sprout', 'burdock', 'butternut', 'butternut squash', 'cabbage', 'canned tomato', 'caper', 'capsicum', 'carrot', 'cauliflower', 'celery', 'celery root', 'chard', 'chayote', 'chia seeds', 'chili pepper', 'chinese broccoli', 'cilantro', 'collard', 'corn', 'cress', 'cucumber', 'daikon', 'dill', 'dulse', 'eggplant', 'endive', 'fennel', 'frozen vegetables', 'garlic', 'ginger', 'green beans', 'hearts of palm', 'horseradish', 'jerusalem artichoke', 'jicama', 'kale', 'kohlrabi', 'leek', 'micro greens', 'mint', 'mixed vegetable', 'mushroom', 'mustard greens', 'okra', 'olive', 'onion', 'parsley', 'parsnip', 'pickle', 'pimiento', 'porcini', 'portobello mushroom', 'potato', 'pumpkin', 'radicchio', 'radish', 'red onion', 'rocket', 'rosemary', 'rutabaga', 'salad greens', 'sauerkraut', 'scallion', 'seaweed', 'shallot', 'snow peas', 'spaghetti squash', 'spinach', 'squash', 'sun dried tomato', 'sweet pepper', 'sweet potato', 'tomatillo', 'tomato', 'turnip', 'water chestnut', 'watercress', 'yam', 'zucchini'];
+
+var AllIngridientys = function (_React$Component) {
+  _inherits(AllIngridientys, _React$Component);
+
+  function AllIngridientys() {
+    _classCallCheck(this, AllIngridientys);
+
+    var _this = _possibleConstructorReturn(this, (AllIngridientys.__proto__ || Object.getPrototypeOf(AllIngridientys)).call(this));
+
+    _this.state = {
+      ingridient: []
+    };
+    _this.handleChange = _this.handleChange.bind(_this);
+    return _this;
+  }
+
+  _createClass(AllIngridientys, [{
+    key: 'componenDidMount',
+    value: function componenDidMount() {
+      console.log('cdm ');
+      this.props.getRecipe();
+      this.props.getInstruction();
+      this.props.getFavs();
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(event) {
+      if (this.state.ingridient.includes(event.target.value) === false) {
+        this.setState({
+          ingridient: [].concat(_toConsumableArray(this.state.ingridient), [event.target.value])
+        });
+      } else {
+        var newIngridient = this.state.ingridient.filter(function (ing) {
+          return ing !== event.target.value;
+        });
+        this.setState({ ingridient: newIngridient });
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var ingridient = this.state.ingridient;
+
+      console.log('dairy', ingridient);
+      return _react2.default.createElement(
+        'div',
+        {
+          style: {
+            backgroundImage: 'url("https://lh3.googleusercontent.com/proxy/q4oDp6ymq4v2bSsXMu6fpdTYAS76gCSEoF3xNtuP-yepq0xa0bLP0o_dFXt-RYZqQVD3WQPUekDnFdBQHkgSf77hAHzE2j2sxJUzat_d77qay_Jr2mQeKSJAWdCOXDtj9qkqamExmq82stympyBNdrQ")',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            //  height:'40rem',
+            backgroundRepeat: 'repeat',
+            paddingBottom: '30rem'
+          }
+        },
+        _react2.default.createElement(
+          'div',
+          {
+            style: {
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center'
+            }
+          },
+          _react2.default.createElement(
+            _ExpansionPanel2.default,
+            {
+              style: {
+                height: '50%',
+                width: '50%',
+                backgroundImage: 'url("https://cdn.wallpapersafari.com/36/71/SyKeC9.jpg")'
+              }
+            },
+            _react2.default.createElement(
+              _ExpansionPanelSummary2.default,
+              {
+                expandIcon: _react2.default.createElement(_ExpandMore2.default, null),
+                'aria-controls': 'panel1a-content',
+                id: 'panel1a-header'
+              },
+              _react2.default.createElement(
+                _Typography2.default,
+                null,
+                'Dairy'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  backgroundColor: 'peach'
+                }
+              },
+              dairies.map(function (dairy) {
+                return _react2.default.createElement(
+                  _ExpansionPanelDetails2.default,
+                  { key: dairy },
+                  _react2.default.createElement(
+                    _FormGroup2.default,
+                    { style: { display: 'flex' } },
+                    _react2.default.createElement(_FormControlLabel2.default, {
+                      control: _react2.default.createElement(_Checkbox2.default, {
+                        onChange: _this2.handleChange,
+                        value: dairy
+                      }),
+                      label: dairy
+                    })
+                  )
+                );
+              })
+            )
+          ),
+          _react2.default.createElement(
+            _ExpansionPanel2.default,
+            {
+              style: {
+                height: '50%',
+                width: '50%',
+                backgroundImage: 'url("https://cdn.wallpapersafari.com/36/71/SyKeC9.jpg")'
+              }
+            },
+            _react2.default.createElement(
+              _ExpansionPanelSummary2.default,
+              {
+                expandIcon: _react2.default.createElement(_ExpandMore2.default, null),
+                'aria-controls': 'panel2a-content',
+                id: 'panel2a-header'
+              },
+              _react2.default.createElement(
+                _Typography2.default,
+                null,
+                'Vegtebales'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  backgroundColor: 'peach'
+                }
+              },
+              vegtables.map(function (vegi) {
+                return _react2.default.createElement(
+                  _ExpansionPanelDetails2.default,
+                  { key: vegi },
+                  _react2.default.createElement(
+                    _FormGroup2.default,
+                    { style: { display: 'flex' } },
+                    _react2.default.createElement(_FormControlLabel2.default, {
+                      control: _react2.default.createElement(_Checkbox2.default, { onChange: _this2.handleChange, value: vegi }),
+                      label: vegi
+                    })
+                  )
+                );
+              })
+            )
+          ),
+          _react2.default.createElement(
+            _Button2.default,
+            {
+              variant: 'contained',
+              color: '#bbab9b',
+              style: { height: '20%', width: '20%' },
+              onClick: function onClick() {
+                _this2.props.postIngredient(_this2.state.ingridient);
+                _this2.props.history.push('/recipeslist');
+              }
+            },
+            'Done'
+          )
+        )
+      );
+    }
+  }]);
+
+  return AllIngridientys;
+}(_react2.default.Component);
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var recipes = _ref.recipes;
+  return { recipes: recipes };
+};
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    getRecipe: function getRecipe() {
+      return dispatch((0, _recipe.setRecipe)());
+    },
+    postIngredient: function postIngredient(ing) {
+      return dispatch((0, _recipe.sendIngredient)(ing));
+    },
+    getInstruction: function getInstruction() {
+      return dispatch((0, _instruction.setUpInstructions)());
+    },
+    getFave: function getFave() {
+      return dispatch((0, _favorits.fetchFavs)());
+    }
+  };
+};
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(AllIngridientys);
+
+/***/ }),
+
 /***/ "./app/components/listOfRecipes.jsx":
 /*!******************************************!*\
   !*** ./app/components/listOfRecipes.jsx ***!
@@ -343,6 +647,9 @@ var ListOfRecipes = function (_React$Component) {
   }
 
   _createClass(ListOfRecipes, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -589,7 +896,7 @@ var Login = function (_Component) {
           _core.Container,
           {
             component: 'div',
-            maxWidth: 'xs',
+            maxWidth: 'sm',
             style: {
               marginTop: '5rem',
               backgroundColor: 'lightPink',
@@ -802,7 +1109,7 @@ function MenuAppBar(props) {
     _react2.default.createElement(_FormGroup2.default, null),
     _react2.default.createElement(
       _AppBar2.default,
-      { position: 'static', style: { backgroundColor: 'grey' } },
+      { position: 'static', style: { backgroundColor: '#bbab9b' } },
       _react2.default.createElement(
         _Toolbar2.default,
         null,
@@ -1244,9 +1551,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
-var _test = __webpack_require__(/*! ./test */ "./app/components/test.jsx");
+var _home = __webpack_require__(/*! ./home */ "./app/components/home.jsx");
 
-var _test2 = _interopRequireDefault(_test);
+var _home2 = _interopRequireDefault(_home);
 
 var _store = __webpack_require__(/*! ../store */ "./app/store.js");
 
@@ -1335,7 +1642,7 @@ var Root = function (_Component) {
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _test2.default, exact: true }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _home2.default, exact: true }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/recipeslist', component: _listOfRecipes2.default, exact: true }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/recipedetails', component: _recipeDetailsPage2.default, exact: true }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _login2.default, exact: true }),
@@ -1447,6 +1754,7 @@ var SignUp = function (_Component) {
       );
 
       if (!nameErr && !emailErr && !passwordErr) {
+        _this.props.login({ email: email, password: password });
         _this.props.history.push('/');
       }
     };
@@ -1629,237 +1937,16 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     createUser: function createUser(user) {
       return dispatch((0, _users.createUser)(user));
     },
-    login: function login() {
-      return dispatch((0, _authentication.logInAttempt)());
+    login: function login(user) {
+      return dispatch((0, _authentication.logInAttempt)(user));
+    },
+    signup: function signup(user) {
+      return dispatch((0, _authentication.SignUpAttempt)(user));
     }
   };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SignUp);
-
-/***/ }),
-
-/***/ "./app/components/test.jsx":
-/*!*********************************!*\
-  !*** ./app/components/test.jsx ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-
-var _FormLabel = __webpack_require__(/*! @material-ui/core/FormLabel */ "./node_modules/@material-ui/core/esm/FormLabel/index.js");
-
-var _FormLabel2 = _interopRequireDefault(_FormLabel);
-
-var _FormControl = __webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/esm/FormControl/index.js");
-
-var _FormControl2 = _interopRequireDefault(_FormControl);
-
-var _FormGroup = __webpack_require__(/*! @material-ui/core/FormGroup */ "./node_modules/@material-ui/core/esm/FormGroup/index.js");
-
-var _FormGroup2 = _interopRequireDefault(_FormGroup);
-
-var _FormControlLabel = __webpack_require__(/*! @material-ui/core/FormControlLabel */ "./node_modules/@material-ui/core/esm/FormControlLabel/index.js");
-
-var _FormControlLabel2 = _interopRequireDefault(_FormControlLabel);
-
-var _FormHelperText = __webpack_require__(/*! @material-ui/core/FormHelperText */ "./node_modules/@material-ui/core/esm/FormHelperText/index.js");
-
-var _FormHelperText2 = _interopRequireDefault(_FormHelperText);
-
-var _Checkbox = __webpack_require__(/*! @material-ui/core/Checkbox */ "./node_modules/@material-ui/core/esm/Checkbox/index.js");
-
-var _Checkbox2 = _interopRequireDefault(_Checkbox);
-
-var _Button = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _recipe = __webpack_require__(/*! ../redux/recipe */ "./app/redux/recipe.js");
-
-var _instruction = __webpack_require__(/*! ../redux/instruction */ "./app/redux/instruction.js");
-
-var _favorits = __webpack_require__(/*! ../redux/favorits */ "./app/redux/favorits.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ChooseIngredient = function (_React$Component) {
-  _inherits(ChooseIngredient, _React$Component);
-
-  function ChooseIngredient() {
-    _classCallCheck(this, ChooseIngredient);
-
-    var _this = _possibleConstructorReturn(this, (ChooseIngredient.__proto__ || Object.getPrototypeOf(ChooseIngredient)).call(this));
-
-    _this.state = {
-      banana: false,
-      flour: false,
-      avocado: false,
-      milk: false,
-      apple: false,
-      beef: false,
-      strawberry: false
-    };
-    _this.handleChange = _this.handleChange.bind(_this);
-    return _this;
-  }
-
-  _createClass(ChooseIngredient, [{
-    key: 'componenDidMount',
-    value: function componenDidMount() {
-      console.log('cdm ');
-      this.props.getRecipe();
-      this.props.getInstruction();
-      this.props.getFavs();
-    }
-  }, {
-    key: 'handleChange',
-    value: function handleChange(event) {
-      this.setState(_defineProperty({}, event.target.value, event.target.checked));
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _state = this.state,
-          banana = _state.banana,
-          flour = _state.flour,
-          apple = _state.apple,
-          avocado = _state.avocado,
-          beef = _state.beef,
-          strawberry = _state.strawberry;
-
-      console.log(this.state, 'state');
-      var recipes = this.props.recipes;
-
-      console.log('rrrrrr', recipes);
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _FormControl2.default,
-          { component: 'fieldset' },
-          _react2.default.createElement(
-            _FormLabel2.default,
-            { component: 'legend' },
-            'Choose Ingredients'
-          ),
-          _react2.default.createElement(
-            _FormGroup2.default,
-            null,
-            _react2.default.createElement(_FormControlLabel2.default, {
-              control: _react2.default.createElement(_Checkbox2.default, {
-                checked: apple,
-                onChange: this.handleChange,
-                value: 'apple'
-              }),
-              label: 'apple'
-            }),
-            _react2.default.createElement(_FormControlLabel2.default, {
-              control: _react2.default.createElement(_Checkbox2.default, {
-                checked: beef,
-                onChange: this.handleChange,
-                value: 'beef'
-              }),
-              label: 'beef'
-            }),
-            _react2.default.createElement(_FormControlLabel2.default, {
-              control: _react2.default.createElement(_Checkbox2.default, {
-                checked: strawberry,
-                onChange: this.handleChange,
-                value: 'strawberry'
-              }),
-              label: 'strawberry'
-            }),
-            _react2.default.createElement(_FormControlLabel2.default, {
-              control: _react2.default.createElement(_Checkbox2.default, {
-                checked: avocado,
-                onChange: this.handleChange,
-                value: 'avocado'
-              }),
-              label: 'avocado'
-            }),
-            _react2.default.createElement(_FormControlLabel2.default, {
-              control: _react2.default.createElement(_Checkbox2.default, {
-                checked: banana,
-                onChange: this.handleChange,
-                value: 'banana'
-              }),
-              label: 'Banana'
-            }),
-            _react2.default.createElement(_FormControlLabel2.default, {
-              control: _react2.default.createElement(_Checkbox2.default, {
-                checked: flour,
-                onChange: this.handleChange,
-                value: 'flour'
-              }),
-              label: 'flour'
-            })
-          ),
-          _react2.default.createElement(
-            _Button2.default,
-            {
-              variant: 'contained',
-              color: 'secondary',
-              onClick: function onClick() {
-                _this2.props.postIngredient(_this2.state);
-                _this2.props.history.push('/recipeslist');
-              }
-            },
-            'Done'
-          )
-        )
-      );
-    }
-  }]);
-
-  return ChooseIngredient;
-}(_react2.default.Component);
-
-var mapStateToProps = function mapStateToProps(_ref) {
-  var recipes = _ref.recipes;
-  return { recipes: recipes };
-};
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    getRecipe: function getRecipe() {
-      return dispatch((0, _recipe.setRecipe)());
-    },
-    postIngredient: function postIngredient(ing) {
-      return dispatch((0, _recipe.sendIngredient)(ing));
-    },
-    getInstruction: function getInstruction() {
-      return dispatch((0, _instruction.setUpInstructions)());
-    },
-    getFave: function getFave() {
-      return dispatch((0, _favorits.fetchFavs)());
-    }
-  };
-};
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ChooseIngredient);
 
 /***/ }),
 
@@ -2033,6 +2120,8 @@ var activeUserReducer = function activeUserReducer() {
   switch (action.type) {
     case _authentication.SIGN_IN:
       return activeUser;
+    case _authentication.SIGN_UP:
+      return activeUser;
     case ADDTO_USER:
       return action.userWithRecipeID;
     case EDIT_USER:
@@ -2061,7 +2150,7 @@ exports.default = activeUserReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.initialLogInAttempt = exports.logOutAttempt = exports.logInAttempt = exports.removeLogInError = exports.LOG_IN_ERROR = exports.SIGN_OUT = exports.SIGN_IN = undefined;
+exports.initialLogInAttempt = exports.logOutAttempt = exports.SignUpAttempt = exports.logInAttempt = exports.removeLogInError = exports.SIGN_UP = exports.LOG_IN_ERROR = exports.SIGN_OUT = exports.SIGN_IN = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -2076,11 +2165,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var SIGN_IN = exports.SIGN_IN = Symbol('sign in');
 var SIGN_OUT = exports.SIGN_OUT = Symbol('sign out');
 var LOG_IN_ERROR = exports.LOG_IN_ERROR = Symbol('log in error');
+var SIGN_UP = exports.SIGN_UP = Symbol('sign up');
 
 // action creators
 var signIn = function signIn(data) {
   return {
     type: SIGN_IN,
+    isLoggedIn: true,
+    activeUser: data
+  };
+};
+var signUp = function signUp(data) {
+  return {
+    type: SIGN_UP,
     isLoggedIn: true,
     activeUser: data
   };
@@ -2137,6 +2234,35 @@ var logInAttempt = exports.logInAttempt = function logInAttempt(logInInfo) {
     };
   }();
 };
+var SignUpAttempt = exports.SignUpAttempt = function SignUpAttempt(signUpInfo) {
+  return function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _axios2.default.post('/auth/signup', signUpInfo).then(function (res) {
+                return dispatch(signUp(res.data));
+              }).catch(function (e) {
+                console.error(e);
+                dispatch(setLogInError());
+                return dispatch(signOut());
+              });
+
+            case 2:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, undefined);
+    }));
+
+    return function (_x3) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+};
 var logOutAttempt = exports.logOutAttempt = function logOutAttempt() {
   return function (dispatch) {
     _axios2.default.get('/auth/signout').then(function () {
@@ -2150,11 +2276,11 @@ var logOutAttempt = exports.logOutAttempt = function logOutAttempt() {
 var initialLogInAttempt = exports.initialLogInAttempt = function initialLogInAttempt() {
   return function (dispatch) {
     _axios2.default.get('/auth/me').then(function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(res) {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(res) {
         var user;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 user = res.data;
 
@@ -2162,14 +2288,14 @@ var initialLogInAttempt = exports.initialLogInAttempt = function initialLogInAtt
 
               case 2:
               case 'end':
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, undefined);
+        }, _callee3, undefined);
       }));
 
-      return function (_x3) {
-        return _ref2.apply(this, arguments);
+      return function (_x4) {
+        return _ref3.apply(this, arguments);
       };
     }()).catch(function (e) {
       console.error(e);
@@ -2188,6 +2314,12 @@ var authenticationReducer = function authenticationReducer() {
   var logInError = action.logInError;
   switch (action.type) {
     case SIGN_IN:
+      {
+        return _extends({}, state, {
+          isLoggedIn: isLoggedIn
+        });
+      }
+    case SIGN_UP:
       {
         return _extends({}, state, {
           isLoggedIn: isLoggedIn

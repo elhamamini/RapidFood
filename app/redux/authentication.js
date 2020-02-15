@@ -13,7 +13,11 @@ const signIn = data => {
   };
 };
 const signUp = data => {
-  return {};
+  return {
+    type: SIGN_UP,
+    isLoggedIn: true,
+    activeUser: data,
+  };
 };
 
 const signOut = () => {
@@ -44,6 +48,20 @@ export const logInAttempt = logInInfo => {
       .post('/auth/login', logInInfo)
       .then(res => {
         return dispatch(signIn(res.data));
+      })
+      .catch(e => {
+        console.error(e);
+        dispatch(setLogInError());
+        return dispatch(signOut());
+      });
+  };
+};
+export const SignUpAttempt = signUpInfo => {
+  return async dispatch => {
+    await axios
+      .post('/auth/signup', signUpInfo)
+      .then(res => {
+        return dispatch(signUp(res.data));
       })
       .catch(e => {
         console.error(e);
@@ -87,6 +105,12 @@ const authenticationReducer = (state = initialState, action) => {
   const logInError = action.logInError;
   switch (action.type) {
     case SIGN_IN: {
+      return {
+        ...state,
+        isLoggedIn,
+      };
+    }
+    case SIGN_UP: {
       return {
         ...state,
         isLoggedIn,

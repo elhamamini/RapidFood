@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Test from './test';
+import Home from './home';
 import store from '../store';
 import ListOfRecipes from './listOfRecipes';
 import RecipeDetails from './recipeDetailsPage';
@@ -19,7 +19,7 @@ export default class Root extends Component {
         <main>
           <MenuAppBar />
           <Switch>
-            <Route path="/" component={Test} exact />
+            <Route path="/" component={Home} exact />
             <Route path="/recipeslist" component={ListOfRecipes} exact />
             <Route path="/recipedetails" component={RecipeDetails} exact />
             <Route path="/login" component={Login} exact />
