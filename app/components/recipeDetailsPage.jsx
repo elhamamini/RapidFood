@@ -37,9 +37,6 @@ const useStyles = makeStyles(theme => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
-    backgroundColor: red[500],
-  },
 }));
 
 function RecipeDetails(props) {
@@ -54,20 +51,26 @@ function RecipeDetails(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  console.log('activeUserrrrrrrr@@@@@', props.activeUser);
   return (
     <div
       style={{
         display: 'felx',
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: 'lightpink',
+        backgroundImage:
+          'url("https://backgroundcheckall.com/wp-content/uploads/2017/12/recipe-background-5.jpg")',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        paddingTop: '5rem',
+        paddingBottom: '10rem',
+        borderRadious: '2rem',
       }}
     >
       <Card className={classes.root}>
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
+            <Avatar aria-label="recipe" stle={{ backgroundColor: 'purple' }}>
               R
             </Avatar>
           }
@@ -103,29 +106,34 @@ function RecipeDetails(props) {
               </li>
             ))}
         </CardContent>
+
         <CardActions disableSpacing>
-          {props.activeUser.recipeId.includes(props.recipe.id) ? (
-            <IconButton aria-label="add to favorites" disabled={true}>
-              {' '}
-              <FavoriteIcon color="secondary" />
-            </IconButton>
-          ) : (
-            <IconButton
-              aria-label="add to favorites"
-              disabled={false}
-              onClick={() => {
-                props.addRecipe(props.recipe.id);
-                props.addFav({
-                  id: props.recipe.id,
-                  image: props.recipe.image,
-                  title: props.recipe.title,
-                  userId: props.activeUser.id,
-                });
-              }}
-            >
-              <FavoriteIcon />
-            </IconButton>
-          )}
+          {props.activeUser.name ? (
+            <div>
+              {props.activeUser.recipeId.includes(props.recipe.id) ? (
+                <IconButton aria-label="add to favorites" disabled={true}>
+                  {' '}
+                  <FavoriteIcon color="secondary" />
+                </IconButton>
+              ) : (
+                <IconButton
+                  aria-label="add to favorites"
+                  disabled={false}
+                  onClick={() => {
+                    props.addRecipe(props.recipe.id);
+                    props.addFav({
+                      id: props.recipe.id,
+                      image: props.recipe.image,
+                      title: props.recipe.title,
+                      userId: props.activeUser.id,
+                    });
+                  }}
+                >
+                  <FavoriteIcon />
+                </IconButton>
+              )}
+            </div>
+          ) : null}
           <IconButton aria-label="share">
             <ShareIcon />
           </IconButton>

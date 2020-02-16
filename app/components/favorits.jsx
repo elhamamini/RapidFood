@@ -31,11 +31,17 @@ class FaveRecipes extends React.Component {
           justifyContent: 'space-around',
           alignItems: 'center',
           overflow: 'hidden',
-          backgroundColor: 'lightPink',
+          backgroundImage:
+            'url("https://media.istockphoto.com/photos/checkered-tablecloth-red-on-the-wooden-background-texture-picture-id604009746?k=6&m=604009746&s=612x612&w=0&h=_cbkYTOQerzem7EQKiykSzQowbtTJeyitgZNCe9s5zw=")',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          paddingBottom: '10rem',
           height: '80',
         }}
       >
-        <h2 style={{ marginTop: '2rem' }}>Your Favorite Recipes</h2>
+        <h2 style={{ marginTop: '2rem', paddingTop: '2rem' ,fontWeight:'bold'}}>
+          Your Favorites
+        </h2>
         <GridList
           cellHeight={180}
           style={{

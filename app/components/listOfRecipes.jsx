@@ -10,9 +10,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import { recipeDetails } from '../redux/oneRecipe';
 import { setInstruction } from '../redux/instruction';
 class ListOfRecipes extends React.Component {
-  componentDidMount(){
-    
-  }
+  componentDidMount() {}
   render() {
     console.log('recepies', this.props.recipes);
     return (
@@ -24,7 +22,11 @@ class ListOfRecipes extends React.Component {
           justifyContent: 'space-around',
           alignItems: 'center',
           overflow: 'hidden',
-          backgroundColor: 'lightPink',
+          backgroundImage:
+            'url("https://i.pinimg.com/originals/f3/30/3e/f3303eef5505dbb1a1bafda092e50793.jpg")',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          paddingBottom:'5rem',
           height: '80',
         }}
       >

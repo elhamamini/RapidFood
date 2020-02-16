@@ -183,14 +183,17 @@ var FaveRecipes = function (_React$Component) {
             justifyContent: 'space-around',
             alignItems: 'center',
             overflow: 'hidden',
-            backgroundColor: 'lightPink',
+            backgroundImage: 'url("https://media.istockphoto.com/photos/checkered-tablecloth-red-on-the-wooden-background-texture-picture-id604009746?k=6&m=604009746&s=612x612&w=0&h=_cbkYTOQerzem7EQKiykSzQowbtTJeyitgZNCe9s5zw=")',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            paddingBottom: '10rem',
             height: '80'
           }
         },
         _react2.default.createElement(
           'h2',
-          { style: { marginTop: '2rem' } },
-          'Your Favorite Recipes'
+          { style: { marginTop: '2rem', paddingTop: '2rem' } },
+          'Your Favorites'
         ),
         _react2.default.createElement(
           _GridList2.default,
@@ -355,6 +358,8 @@ var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ "./node_modules/@m
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
+var _ingidiantsArrays = __webpack_require__(/*! ./ingidiantsArrays.js */ "./app/components/ingidiantsArrays.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -364,9 +369,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var dairies = ['american cheese', 'blue cheese', 'brie', 'butter', 'buttermilk', 'camembert cheese', 'cheddar', 'colby cheese', 'condensed milk', 'cottage cheese', 'cream', 'cream cheese', 'custard', 'edam cheese', 'egg', 'farmer cheese', 'feta', 'fontina', 'frosting', 'ghee', 'goat cheese', 'goat milk', 'gouda', 'gruyere', 'half and half', 'halloumi', 'hard cheese', 'ice cream', 'italian cheese', 'manchego', 'milk', 'monterey jack cheese', 'mozzarella', 'parmesan', 'pecorino cheese', 'pepper jack', 'pepperjack cheese', 'pizza cheese', 'powdered milk', 'aclette cheese', 'ricotta', 'soft cheese', 'sour cream', 'swiss cheese', 'whipped cream', 'yogurt'];
-var vegtables = ['artichoke', 'artichoke heart', 'arugula', 'asparagus', 'avocado', 'bamboo shoot', 'basil', 'bean sprouts', 'beet', 'bell pepper', 'bok choy', 'broccoli', 'broccoli rabe', 'brussels sprout', 'burdock', 'butternut', 'butternut squash', 'cabbage', 'canned tomato', 'caper', 'capsicum', 'carrot', 'cauliflower', 'celery', 'celery root', 'chard', 'chayote', 'chia seeds', 'chili pepper', 'chinese broccoli', 'cilantro', 'collard', 'corn', 'cress', 'cucumber', 'daikon', 'dill', 'dulse', 'eggplant', 'endive', 'fennel', 'frozen vegetables', 'garlic', 'ginger', 'green beans', 'hearts of palm', 'horseradish', 'jerusalem artichoke', 'jicama', 'kale', 'kohlrabi', 'leek', 'micro greens', 'mint', 'mixed vegetable', 'mushroom', 'mustard greens', 'okra', 'olive', 'onion', 'parsley', 'parsnip', 'pickle', 'pimiento', 'porcini', 'portobello mushroom', 'potato', 'pumpkin', 'radicchio', 'radish', 'red onion', 'rocket', 'rosemary', 'rutabaga', 'salad greens', 'sauerkraut', 'scallion', 'seaweed', 'shallot', 'snow peas', 'spaghetti squash', 'spinach', 'squash', 'sun dried tomato', 'sweet pepper', 'sweet potato', 'tomatillo', 'tomato', 'turnip', 'water chestnut', 'watercress', 'yam', 'zucchini'];
 
 var AllIngridientys = function (_React$Component) {
   _inherits(AllIngridientys, _React$Component);
@@ -417,7 +419,7 @@ var AllIngridientys = function (_React$Component) {
         'div',
         {
           style: {
-            backgroundImage: 'url("https://lh3.googleusercontent.com/proxy/q4oDp6ymq4v2bSsXMu6fpdTYAS76gCSEoF3xNtuP-yepq0xa0bLP0o_dFXt-RYZqQVD3WQPUekDnFdBQHkgSf77hAHzE2j2sxJUzat_d77qay_Jr2mQeKSJAWdCOXDtj9qkqamExmq82stympyBNdrQ")',
+            backgroundImage: 'url("https://backgroundcheckall.com/wp-content/uploads/2017/12/background-cooking-11.jpg")',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             //  height:'40rem',
@@ -440,8 +442,7 @@ var AllIngridientys = function (_React$Component) {
             {
               style: {
                 height: '50%',
-                width: '50%',
-                backgroundImage: 'url("https://cdn.wallpapersafari.com/36/71/SyKeC9.jpg")'
+                width: '40%'
               }
             },
             _react2.default.createElement(
@@ -466,7 +467,7 @@ var AllIngridientys = function (_React$Component) {
                   backgroundColor: 'peach'
                 }
               },
-              dairies.map(function (dairy) {
+              _ingidiantsArrays.dairies.map(function (dairy) {
                 return _react2.default.createElement(
                   _ExpansionPanelDetails2.default,
                   { key: dairy },
@@ -490,8 +491,7 @@ var AllIngridientys = function (_React$Component) {
             {
               style: {
                 height: '50%',
-                width: '50%',
-                backgroundImage: 'url("https://cdn.wallpapersafari.com/36/71/SyKeC9.jpg")'
+                width: '40%'
               }
             },
             _react2.default.createElement(
@@ -516,7 +516,7 @@ var AllIngridientys = function (_React$Component) {
                   backgroundColor: 'peach'
                 }
               },
-              vegtables.map(function (vegi) {
+              _ingidiantsArrays.vegtables.map(function (vegi) {
                 return _react2.default.createElement(
                   _ExpansionPanelDetails2.default,
                   { key: vegi },
@@ -526,6 +526,294 @@ var AllIngridientys = function (_React$Component) {
                     _react2.default.createElement(_FormControlLabel2.default, {
                       control: _react2.default.createElement(_Checkbox2.default, { onChange: _this2.handleChange, value: vegi }),
                       label: vegi
+                    })
+                  )
+                );
+              })
+            )
+          ),
+          _react2.default.createElement(
+            _ExpansionPanel2.default,
+            {
+              style: {
+                height: '50%',
+                width: '40%'
+              }
+            },
+            _react2.default.createElement(
+              _ExpansionPanelSummary2.default,
+              {
+                expandIcon: _react2.default.createElement(_ExpandMore2.default, null),
+                'aria-controls': 'panel1a-content',
+                id: 'panel1a-header'
+              },
+              _react2.default.createElement(
+                _Typography2.default,
+                null,
+                'Fruits'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  backgroundColor: 'peach'
+                }
+              },
+              _ingidiantsArrays.fruits.map(function (fruit) {
+                return _react2.default.createElement(
+                  _ExpansionPanelDetails2.default,
+                  { key: fruit },
+                  _react2.default.createElement(
+                    _FormGroup2.default,
+                    { style: { display: 'flex' } },
+                    _react2.default.createElement(_FormControlLabel2.default, {
+                      control: _react2.default.createElement(_Checkbox2.default, {
+                        onChange: _this2.handleChange,
+                        value: fruit
+                      }),
+                      label: fruit
+                    })
+                  )
+                );
+              })
+            )
+          ),
+          _react2.default.createElement(
+            _ExpansionPanel2.default,
+            {
+              style: {
+                height: '50%',
+                width: '40%'
+              }
+            },
+            _react2.default.createElement(
+              _ExpansionPanelSummary2.default,
+              {
+                expandIcon: _react2.default.createElement(_ExpandMore2.default, null),
+                'aria-controls': 'panel1a-content',
+                id: 'panel1a-header'
+              },
+              _react2.default.createElement(
+                _Typography2.default,
+                null,
+                'Baking and Grains'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  backgroundColor: 'peach'
+                }
+              },
+              _ingidiantsArrays.grains.map(function (grain) {
+                return _react2.default.createElement(
+                  _ExpansionPanelDetails2.default,
+                  { key: grain },
+                  _react2.default.createElement(
+                    _FormGroup2.default,
+                    { style: { display: 'flex' } },
+                    _react2.default.createElement(_FormControlLabel2.default, {
+                      control: _react2.default.createElement(_Checkbox2.default, {
+                        onChange: _this2.handleChange,
+                        value: grain
+                      }),
+                      label: grain
+                    })
+                  )
+                );
+              })
+            )
+          ),
+          _react2.default.createElement(
+            _ExpansionPanel2.default,
+            {
+              style: {
+                height: '50%',
+                width: '40%'
+              }
+            },
+            _react2.default.createElement(
+              _ExpansionPanelSummary2.default,
+              {
+                expandIcon: _react2.default.createElement(_ExpandMore2.default, null),
+                'aria-controls': 'panel1a-content',
+                id: 'panel1a-header'
+              },
+              _react2.default.createElement(
+                _Typography2.default,
+                null,
+                'Meats'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  backgroundColor: 'peach'
+                }
+              },
+              _ingidiantsArrays.meats.map(function (meat) {
+                return _react2.default.createElement(
+                  _ExpansionPanelDetails2.default,
+                  { key: meat },
+                  _react2.default.createElement(
+                    _FormGroup2.default,
+                    { style: { display: 'flex' } },
+                    _react2.default.createElement(_FormControlLabel2.default, {
+                      control: _react2.default.createElement(_Checkbox2.default, { onChange: _this2.handleChange, value: meat }),
+                      label: meat
+                    })
+                  )
+                );
+              })
+            )
+          ),
+          _react2.default.createElement(
+            _ExpansionPanel2.default,
+            {
+              style: {
+                height: '50%',
+                width: '40%'
+              }
+            },
+            _react2.default.createElement(
+              _ExpansionPanelSummary2.default,
+              {
+                expandIcon: _react2.default.createElement(_ExpandMore2.default, null),
+                'aria-controls': 'panel1a-content',
+                id: 'panel1a-header'
+              },
+              _react2.default.createElement(
+                _Typography2.default,
+                null,
+                'Fishes'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  backgroundColor: 'peach'
+                }
+              },
+              _ingidiantsArrays.fishes.map(function (fish) {
+                return _react2.default.createElement(
+                  _ExpansionPanelDetails2.default,
+                  { key: fish },
+                  _react2.default.createElement(
+                    _FormGroup2.default,
+                    { style: { display: 'flex' } },
+                    _react2.default.createElement(_FormControlLabel2.default, {
+                      control: _react2.default.createElement(_Checkbox2.default, { onChange: _this2.handleChange, value: fish }),
+                      label: fish
+                    })
+                  )
+                );
+              })
+            )
+          ),
+          _react2.default.createElement(
+            _ExpansionPanel2.default,
+            {
+              style: {
+                height: '50%',
+                width: '40%'
+              }
+            },
+            _react2.default.createElement(
+              _ExpansionPanelSummary2.default,
+              {
+                expandIcon: _react2.default.createElement(_ExpandMore2.default, null),
+                'aria-controls': 'panel1a-content',
+                id: 'panel1a-header'
+              },
+              _react2.default.createElement(
+                _Typography2.default,
+                null,
+                'Sea Foods'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  backgroundColor: 'peach'
+                }
+              },
+              _ingidiantsArrays.seaFoods.map(function (seaFood) {
+                return _react2.default.createElement(
+                  _ExpansionPanelDetails2.default,
+                  { key: seaFood },
+                  _react2.default.createElement(
+                    _FormGroup2.default,
+                    { style: { display: 'flex' } },
+                    _react2.default.createElement(_FormControlLabel2.default, {
+                      control: _react2.default.createElement(_Checkbox2.default, {
+                        onChange: _this2.handleChange,
+                        value: seaFood
+                      }),
+                      label: seaFood
+                    })
+                  )
+                );
+              })
+            )
+          ),
+          _react2.default.createElement(
+            _ExpansionPanel2.default,
+            {
+              style: {
+                height: '50%',
+                width: '40%'
+              }
+            },
+            _react2.default.createElement(
+              _ExpansionPanelSummary2.default,
+              {
+                expandIcon: _react2.default.createElement(_ExpandMore2.default, null),
+                'aria-controls': 'panel1a-content',
+                id: 'panel1a-header'
+              },
+              _react2.default.createElement(
+                _Typography2.default,
+                null,
+                'Legums'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  backgroundColor: 'peach'
+                }
+              },
+              _ingidiantsArrays.legumes.map(function (legum) {
+                return _react2.default.createElement(
+                  _ExpansionPanelDetails2.default,
+                  { key: legum },
+                  _react2.default.createElement(
+                    _FormGroup2.default,
+                    { style: { display: 'flex' } },
+                    _react2.default.createElement(_FormControlLabel2.default, {
+                      control: _react2.default.createElement(_Checkbox2.default, {
+                        onChange: _this2.handleChange,
+                        value: legum
+                      }),
+                      label: legum
                     })
                   )
                 );
@@ -574,6 +862,30 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(AllIngridientys);
+
+/***/ }),
+
+/***/ "./app/components/ingidiantsArrays.js":
+/*!********************************************!*\
+  !*** ./app/components/ingidiantsArrays.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var dairies = exports.dairies = ['american cheese', 'blue cheese', 'brie', 'butter', 'buttermilk', 'camembert cheese', 'cheddar', 'colby cheese', 'condensed milk', 'cottage cheese', 'cream', 'cream cheese', 'custard', 'edam cheese', 'egg', 'farmer cheese', 'feta', 'fontina', 'frosting', 'ghee', 'goat cheese', 'goat milk', 'gouda', 'gruyere', 'half and half', 'halloumi', 'hard cheese', 'ice cream', 'italian cheese', 'manchego', 'milk', 'monterey jack cheese', 'mozzarella', 'parmesan', 'pecorino cheese', 'pepper jack', 'pepperjack cheese', 'pizza cheese', 'powdered milk', 'aclette cheese', 'ricotta', 'soft cheese', 'sour cream', 'swiss cheese', 'whipped cream', 'yogurt'];
+var vegtables = exports.vegtables = ['artichoke', 'artichoke heart', 'arugula', 'asparagus', 'avocado', 'bamboo shoot', 'basil', 'bean sprouts', 'beet', 'bell pepper', 'bok choy', 'broccoli', 'broccoli rabe', 'brussels sprout', 'burdock', 'butternut', 'butternut squash', 'cabbage', 'canned tomato', 'caper', 'capsicum', 'carrot', 'cauliflower', 'celery', 'celery root', 'chard', 'chayote', 'chia seeds', 'chili pepper', 'chinese broccoli', 'cilantro', 'collard', 'corn', 'cress', 'cucumber', 'daikon', 'dill', 'dulse', 'eggplant', 'endive', 'fennel', 'frozen vegetables', 'garlic', 'ginger', 'green beans', 'hearts of palm', 'horseradish', 'jerusalem artichoke', 'jicama', 'kale', 'kohlrabi', 'leek', 'micro greens', 'mint', 'mixed vegetable', 'mushroom', 'mustard greens', 'okra', 'olive', 'onion', 'parsley', 'parsnip', 'pickle', 'pimiento', 'porcini', 'portobello mushroom', 'potato', 'pumpkin', 'radicchio', 'radish', 'red onion', 'rocket', 'rosemary', 'rutabaga', 'salad greens', 'sauerkraut', 'scallion', 'seaweed', 'shallot', 'snow peas', 'spaghetti squash', 'spinach', 'squash', 'sun dried tomato', 'sweet pepper', 'sweet potato', 'tomatillo', 'tomato', 'turnip', 'water chestnut', 'watercress', 'yam', 'zucchini'];
+var fruits = exports.fruits = ['apple', 'apple butter', 'apricot', 'banana', 'berries', 'blackberry', 'blueberry', 'boysenberry', 'cantaloupe', 'cherry', 'clementine', 'coconut', 'crabapples', 'craisins', 'cranberry', 'currant', 'date', 'fig', 'grape', 'grapefruit', 'guava', 'honeydew', 'kiwi', 'kumquat', 'lemon', 'lime', 'lingonberry', 'lychee', 'mandarin', 'mango', 'nectarine', 'orange', 'papaya', 'passion fruit', 'peach', 'pear', 'persimmons', 'pineapple', 'plantain', 'plum', 'pomegranate', 'prunes', 'quince', 'raisin', 'raspberry', 'rhubarb', 'star fruit', 'strawberry', 'sultanas', 'tangelos', 'tangerine', 'watermelon'];
+var grains = exports.grains = ['angel food', 'angel hair', 'bagel', 'baguette', 'baking powder', 'baking soda', 'barley', 'bicarbonate of soda', 'biscuits', 'bisquick', 'bran', 'bread', 'bread crumbs', 'bread dough', 'bread flour', 'breadsticks', 'brown rice', 'buckwheat', 'cake mix', 'cereal', 'challah', 'chips', 'ciabatta', 'coconut flake', 'coconut flour', 'corn tortillas', 'cornbread', 'cornflour', 'cornmeal', 'cornstarch', 'couscous', 'cracker', 'cream of wheat', 'crescent roll dough', 'croissants', 'croutons', 'english muffin', 'filo dough', 'flour', 'flour tortillas', 'gnocchi', 'gram flour', 'hot dog bun', 'lasagne', 'macaroni cheese mix', 'malt extract', 'matzo meal', 'muffin mix', 'multigrain bread', 'noodle', 'pancake mix', 'pasta', 'pie crust', 'pierogi', 'pita', 'pizza dough', 'polenta', 'popcorn', 'potato flakes', 'potato starch', 'pretzel', 'puff pastry', 'quinoa', 'ramen', 'ravioli', 'rice', 'rice flour', 'risotto', 'rolled oats', 'rye', 'saltines', 'self rising flour', 'semolina', 'shortcrust pastry', 'sorghum flour', 'sourdough starter', 'spelt', 'sponge cake', 'starch', 'stuffing mix', 'tapioca flour', 'tapioca starch', 'vermicelli', 'wafer', 'wheat', 'wheat germ', 'whole wheat flour', 'yeast', 'yeast flake'];
+var meats = exports.meats = ['alligator', 'bacon', 'beef liver', 'beef ribs', 'beef roast', 'beef shank', 'beef sirloin', 'beef steak', 'beef suet', 'bologna', 'bratwurst', 'canadian bacon', 'chicken breast', 'chicken giblets', 'chicken leg', 'chicken roast', 'chicken tenders', 'chicken thighs', 'chicken wings', 'chorizo', 'cooked chicken', 'corned beef', 'cornish hen', 'deer', 'duck', 'duck liver', 'elk', 'foie gras', 'goose', 'goose liver', 'ground beef', 'ground chicken', 'ground lamb', 'ground pork', 'ground turkey', 'ground veal', 'grouse', 'ham', 'hot dog', 'lamb', 'lamb chops', 'lamb liver', 'lamb loin', 'lamb shank', 'lamb shoulder', 'leg of lamb', 'liver sausage', 'marrow bones', 'moose', 'ostrich', 'oxtail', 'pancetta', 'pastrami', 'pepperoni', 'pheasant', 'pigeon', 'polish sausage', 'pork', 'pork belly', 'pork chops', 'pork liver', 'pork loin', 'pork ribs', 'pork roast', 'pork shoulder', 'prosciutto', 'quail', 'rabbit', 'salami', 'sausage', 'sliced turkey', 'snail', 'soppressata', 'spam', 'sweetbread', 'turkey', 'turkey liver', 'veal', 'veal chops', 'veal cutlet', 'veal shank', 'venison', 'whole chicken', 'wild boar'];
+var fishes = exports.fishes = ['canned tuna', 'salmon', 'tilapia', 'fish fillets', 'cod', 'canned salmon', 'anchovy', 'smoked salmon', 'sardines', 'tuna steak', 'whitefish', 'halibut', 'trout', 'haddock', 'flounder', 'catfish', 'mahi mahi', 'mackerel', 'sole', 'sea bass', 'red snapper', 'swordfish', 'pollock', 'herring', 'perch', 'grouper', 'caviar', 'monkfish', 'rockfish', 'lemon sole', 'pike', 'barramundi', 'eel', 'bluefish', 'carp', 'cuttlefish', 'pompano', 'arctic char', 'john dory', 'marlin', 'amberjack', 'sturgeon'];
+var seaFoods = exports.seaFoods = ['shrimp', 'crab', 'prawns', 'scallop', 'clam', 'lobster', 'mussel', 'oyster', 'squid', 'calamari', 'crawfish', 'octopus', 'cockle', 'conch', 'sea urchin'];
+var legumes = exports.legumes = ['green beans', 'peas', 'black beans', 'chickpea', 'lentil', 'refried beans', 'hummus', 'chili beans', 'lima beans', 'kidney beans', 'pinto beans', 'edamame', 'split peas', 'snap peas', 'soybeans', 'cannellini beans', 'navy beans', 'french beans', 'red beans', 'great northern beans', 'fava beans'];
 
 /***/ }),
 
@@ -665,7 +977,10 @@ var ListOfRecipes = function (_React$Component) {
             justifyContent: 'space-around',
             alignItems: 'center',
             overflow: 'hidden',
-            backgroundColor: 'lightPink',
+            backgroundImage: 'url("https://i.pinimg.com/originals/f3/30/3e/f3303eef5505dbb1a1bafda092e50793.jpg")',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            paddingBottom: '5rem',
             height: '80'
           }
         },
@@ -887,7 +1202,7 @@ var Login = function (_Component) {
         'div',
         {
           style: {
-            backgroundColor: 'lightGrey',
+            backgroundImage: 'url("https://www.foodwise.com.au/wp-content/uploads/2012/08/Background_ChoppingBoard21.jpg")',
             height: '40rem',
             paddingTop: '5rem'
           }
@@ -899,9 +1214,13 @@ var Login = function (_Component) {
             maxWidth: 'sm',
             style: {
               marginTop: '5rem',
-              backgroundColor: 'lightPink',
+              backgroundImage: 'url("https://png.pngtree.com/thumb_back/fw800/background/20190222/ourmid/pngtree-painted-corner-tropical-leaves-background-material-plantposter-backgroundbanner-backgroundbackground-image_50644.jpg")',
+
               width: '20rem',
-              height: '20rem'
+              height: '20rem',
+              border: 'solid 1px brown',
+              borderRadius: '10px'
+              // backgroundColor:'#bbab9b'
             }
           },
           _react2.default.createElement(_core.CssBaseline, null),
@@ -1109,7 +1428,13 @@ function MenuAppBar(props) {
     _react2.default.createElement(_FormGroup2.default, null),
     _react2.default.createElement(
       _AppBar2.default,
-      { position: 'static', style: { backgroundColor: '#bbab9b' } },
+      {
+        position: 'static',
+        style: {
+          backgroundColor: '#bbab9b',
+          backgroundImage: 'url("https://www.abarbistro.co.uk/wp-content/uploads/2019/03/beige-background.png")'
+        }
+      },
       _react2.default.createElement(
         _Toolbar2.default,
         null,
@@ -1351,9 +1676,6 @@ var useStyles = (0, _styles.makeStyles)(function (theme) {
     },
     expandOpen: {
       transform: 'rotate(180deg)'
-    },
-    avatar: {
-      backgroundColor: _colors.red[500]
     }
   };
 });
@@ -1374,7 +1696,7 @@ function RecipeDetails(props) {
   var handleExpandClick = function handleExpandClick() {
     setExpanded(!expanded);
   };
-
+  console.log('activeUserrrrrrrr@@@@@', props.activeUser);
   return _react2.default.createElement(
     'div',
     {
@@ -1382,7 +1704,12 @@ function RecipeDetails(props) {
         display: 'felx',
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: 'lightpink'
+        backgroundImage: 'url("https://backgroundcheckall.com/wp-content/uploads/2017/12/recipe-background-5.jpg")',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        paddingTop: '5rem',
+        paddingBottom: '10rem',
+        borderRadious: '2rem'
       }
     },
     _react2.default.createElement(
@@ -1391,7 +1718,7 @@ function RecipeDetails(props) {
       _react2.default.createElement(_CardHeader2.default, {
         avatar: _react2.default.createElement(
           _Avatar2.default,
-          { 'aria-label': 'recipe', className: classes.avatar },
+          { 'aria-label': 'recipe', stle: { backgroundColor: 'purple' } },
           'R'
         ),
         action: _react2.default.createElement(
@@ -1432,28 +1759,32 @@ function RecipeDetails(props) {
       _react2.default.createElement(
         _CardActions2.default,
         { disableSpacing: true },
-        props.activeUser.recipeId.includes(props.recipe.id) ? _react2.default.createElement(
-          _IconButton2.default,
-          { 'aria-label': 'add to favorites', disabled: true },
-          ' ',
-          _react2.default.createElement(_Favorite2.default, { color: 'secondary' })
-        ) : _react2.default.createElement(
-          _IconButton2.default,
-          {
-            'aria-label': 'add to favorites',
-            disabled: false,
-            onClick: function onClick() {
-              props.addRecipe(props.recipe.id);
-              props.addFav({
-                id: props.recipe.id,
-                image: props.recipe.image,
-                title: props.recipe.title,
-                userId: props.activeUser.id
-              });
-            }
-          },
-          _react2.default.createElement(_Favorite2.default, null)
-        ),
+        props.activeUser.name ? _react2.default.createElement(
+          'div',
+          null,
+          props.activeUser.recipeId.includes(props.recipe.id) ? _react2.default.createElement(
+            _IconButton2.default,
+            { 'aria-label': 'add to favorites', disabled: true },
+            ' ',
+            _react2.default.createElement(_Favorite2.default, { color: 'secondary' })
+          ) : _react2.default.createElement(
+            _IconButton2.default,
+            {
+              'aria-label': 'add to favorites',
+              disabled: false,
+              onClick: function onClick() {
+                props.addRecipe(props.recipe.id);
+                props.addFav({
+                  id: props.recipe.id,
+                  image: props.recipe.image,
+                  title: props.recipe.title,
+                  userId: props.activeUser.id
+                });
+              }
+            },
+            _react2.default.createElement(_Favorite2.default, null)
+          )
+        ) : null,
         _react2.default.createElement(
           _IconButton2.default,
           { 'aria-label': 'share' },

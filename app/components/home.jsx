@@ -17,149 +17,17 @@ import { setRecipe, sendIngredient } from '../redux/recipe';
 import { setUpInstructions } from '../redux/instruction';
 import { fetchFavs } from '../redux/favorits';
 import Icon from '@material-ui/core/Icon';
-const dairies = [
-  'american cheese',
-  'blue cheese',
-  'brie',
-  'butter',
-  'buttermilk',
-  'camembert cheese',
-  'cheddar',
-  'colby cheese',
-  'condensed milk',
-  'cottage cheese',
-  'cream',
-  'cream cheese',
-  'custard',
-  'edam cheese',
-  'egg',
-  'farmer cheese',
-  'feta',
-  'fontina',
-  'frosting',
-  'ghee',
-  'goat cheese',
-  'goat milk',
-  'gouda',
-  'gruyere',
-  'half and half',
-  'halloumi',
-  'hard cheese',
-  'ice cream',
-  'italian cheese',
-  'manchego',
-  'milk',
-  'monterey jack cheese',
-  'mozzarella',
-  'parmesan',
-  'pecorino cheese',
-  'pepper jack',
-  'pepperjack cheese',
-  'pizza cheese',
-  'powdered milk',
-  'aclette cheese',
-  'ricotta',
-  'soft cheese',
-  'sour cream',
-  'swiss cheese',
-  'whipped cream',
-  'yogurt',
-];
-const vegtables = [
-  'artichoke',
-  'artichoke heart',
-  'arugula',
-  'asparagus',
-  'avocado',
-  'bamboo shoot',
-  'basil',
-  'bean sprouts',
-  'beet',
-  'bell pepper',
-  'bok choy',
-  'broccoli',
-  'broccoli rabe',
-  'brussels sprout',
-  'burdock',
-  'butternut',
-  'butternut squash',
-  'cabbage',
-  'canned tomato',
-  'caper',
-  'capsicum',
-  'carrot',
-  'cauliflower',
-  'celery',
-  'celery root',
-  'chard',
-  'chayote',
-  'chia seeds',
-  'chili pepper',
-  'chinese broccoli',
-  'cilantro',
-  'collard',
-  'corn',
-  'cress',
-  'cucumber',
-  'daikon',
-  'dill',
-  'dulse',
-  'eggplant',
-  'endive',
-  'fennel',
-  'frozen vegetables',
-  'garlic',
-  'ginger',
-  'green beans',
-  'hearts of palm',
-  'horseradish',
-  'jerusalem artichoke',
-  'jicama',
-  'kale',
-  'kohlrabi',
-  'leek',
-  'micro greens',
-  'mint',
-  'mixed vegetable',
-  'mushroom',
-  'mustard greens',
-  'okra',
-  'olive',
-  'onion',
-  'parsley',
-  'parsnip',
-  'pickle',
-  'pimiento',
-  'porcini',
-  'portobello mushroom',
-  'potato',
-  'pumpkin',
-  'radicchio',
-  'radish',
-  'red onion',
-  'rocket',
-  'rosemary',
-  'rutabaga',
-  'salad greens',
-  'sauerkraut',
-  'scallion',
-  'seaweed',
-  'shallot',
-  'snow peas',
-  'spaghetti squash',
-  'spinach',
-  'squash',
-  'sun dried tomato',
-  'sweet pepper',
-  'sweet potato',
-  'tomatillo',
-  'tomato',
-  'turnip',
-  'water chestnut',
-  'watercress',
-  'yam',
-  'zucchini',
-];
+import {
+  dairies,
+  vegtables,
+  fruits,
+  meats,
+  grains,
+  fishes,
+  seaFoods,
+  legumes,
+} from './ingidiantsArrays.js';
+
 class AllIngridientys extends React.Component {
   constructor() {
     super();
@@ -194,7 +62,7 @@ class AllIngridientys extends React.Component {
       <div
         style={{
           backgroundImage:
-            'url("https://lh3.googleusercontent.com/proxy/q4oDp6ymq4v2bSsXMu6fpdTYAS76gCSEoF3xNtuP-yepq0xa0bLP0o_dFXt-RYZqQVD3WQPUekDnFdBQHkgSf77hAHzE2j2sxJUzat_d77qay_Jr2mQeKSJAWdCOXDtj9qkqamExmq82stympyBNdrQ")',
+            'url("https://backgroundcheckall.com/wp-content/uploads/2017/12/background-cooking-11.jpg")',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           //  height:'40rem',
@@ -213,9 +81,7 @@ class AllIngridientys extends React.Component {
           <ExpansionPanel
             style={{
               height: '50%',
-              width: '50%',
-              backgroundImage:
-                'url("https://cdn.wallpapersafari.com/36/71/SyKeC9.jpg")',
+              width: '40%',
             }}
           >
             <ExpansionPanelSummary
@@ -254,9 +120,7 @@ class AllIngridientys extends React.Component {
           <ExpansionPanel
             style={{
               height: '50%',
-              width: '50%',
-              backgroundImage:
-                'url("https://cdn.wallpapersafari.com/36/71/SyKeC9.jpg")',
+              width: '40%',
             }}
           >
             <ExpansionPanelSummary
@@ -282,6 +146,234 @@ class AllIngridientys extends React.Component {
                           <Checkbox onChange={this.handleChange} value={vegi} />
                         }
                         label={vegi}
+                      />
+                    </FormGroup>
+                  </ExpansionPanelDetails>
+                );
+              })}
+            </div>
+          </ExpansionPanel>
+          <ExpansionPanel
+            style={{
+              height: '50%',
+              width: '40%',
+            }}
+          >
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Fruits</Typography>
+            </ExpansionPanelSummary>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                backgroundColor: 'peach',
+              }}
+            >
+              {fruits.map(fruit => {
+                return (
+                  <ExpansionPanelDetails key={fruit}>
+                    <FormGroup style={{ display: 'flex' }}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            onChange={this.handleChange}
+                            value={fruit}
+                          />
+                        }
+                        label={fruit}
+                      />
+                    </FormGroup>
+                  </ExpansionPanelDetails>
+                );
+              })}
+            </div>
+          </ExpansionPanel>
+          <ExpansionPanel
+            style={{
+              height: '50%',
+              width: '40%',
+            }}
+          >
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Baking and Grains</Typography>
+            </ExpansionPanelSummary>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                backgroundColor: 'peach',
+              }}
+            >
+              {grains.map(grain => {
+                return (
+                  <ExpansionPanelDetails key={grain}>
+                    <FormGroup style={{ display: 'flex' }}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            onChange={this.handleChange}
+                            value={grain}
+                          />
+                        }
+                        label={grain}
+                      />
+                    </FormGroup>
+                  </ExpansionPanelDetails>
+                );
+              })}
+            </div>
+          </ExpansionPanel>
+          <ExpansionPanel
+            style={{
+              height: '50%',
+              width: '40%',
+            }}
+          >
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Meats</Typography>
+            </ExpansionPanelSummary>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                backgroundColor: 'peach',
+              }}
+            >
+              {meats.map(meat => {
+                return (
+                  <ExpansionPanelDetails key={meat}>
+                    <FormGroup style={{ display: 'flex' }}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox onChange={this.handleChange} value={meat} />
+                        }
+                        label={meat}
+                      />
+                    </FormGroup>
+                  </ExpansionPanelDetails>
+                );
+              })}
+            </div>
+          </ExpansionPanel>
+          <ExpansionPanel
+            style={{
+              height: '50%',
+              width: '40%',
+            }}
+          >
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Fishes</Typography>
+            </ExpansionPanelSummary>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                backgroundColor: 'peach',
+              }}
+            >
+              {fishes.map(fish => {
+                return (
+                  <ExpansionPanelDetails key={fish}>
+                    <FormGroup style={{ display: 'flex' }}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox onChange={this.handleChange} value={fish} />
+                        }
+                        label={fish}
+                      />
+                    </FormGroup>
+                  </ExpansionPanelDetails>
+                );
+              })}
+            </div>
+          </ExpansionPanel>
+          <ExpansionPanel
+            style={{
+              height: '50%',
+              width: '40%',
+            }}
+          >
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Sea Foods</Typography>
+            </ExpansionPanelSummary>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                backgroundColor: 'peach',
+              }}
+            >
+              {seaFoods.map(seaFood => {
+                return (
+                  <ExpansionPanelDetails key={seaFood}>
+                    <FormGroup style={{ display: 'flex' }}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            onChange={this.handleChange}
+                            value={seaFood}
+                          />
+                        }
+                        label={seaFood}
+                      />
+                    </FormGroup>
+                  </ExpansionPanelDetails>
+                );
+              })}
+            </div>
+          </ExpansionPanel>
+          <ExpansionPanel
+            style={{
+              height: '50%',
+              width: '40%',
+            }}
+          >
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Legums</Typography>
+            </ExpansionPanelSummary>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                backgroundColor: 'peach',
+              }}
+            >
+              {legumes.map(legum => {
+                return (
+                  <ExpansionPanelDetails key={legum}>
+                    <FormGroup style={{ display: 'flex' }}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            onChange={this.handleChange}
+                            value={legum}
+                          />
+                        }
+                        label={legum}
                       />
                     </FormGroup>
                   </ExpansionPanelDetails>

@@ -94,7 +94,8 @@ class Login extends Component {
     return (
       <div
         style={{
-          backgroundColor: 'lightGrey',
+          backgroundImage:
+            'url("https://www.foodwise.com.au/wp-content/uploads/2012/08/Background_ChoppingBoard21.jpg")',
           height: '40rem',
           paddingTop: '5rem',
         }}
@@ -104,9 +105,14 @@ class Login extends Component {
           maxWidth="sm"
           style={{
             marginTop: '5rem',
-            backgroundColor: 'lightPink',
+            backgroundImage:
+              'url("https://png.pngtree.com/thumb_back/fw800/background/20190222/ourmid/pngtree-painted-corner-tropical-leaves-background-material-plantposter-backgroundbanner-backgroundbackground-image_50644.jpg")',
+
             width: '20rem',
             height: '20rem',
+            border: 'solid 1px brown',
+            borderRadius: '10px',
+            // backgroundColor:'#bbab9b'
           }}
         >
           <CssBaseline />

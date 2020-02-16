@@ -47,7 +47,14 @@ function MenuAppBar(props) {
   return (
     <div className={classes.root}>
       <FormGroup></FormGroup>
-      <AppBar position="static" style={{ backgroundColor: '#bbab9b' }}>
+      <AppBar
+        position="static"
+        style={{
+          backgroundColor: '#bbab9b',
+          backgroundImage:
+            'url("https://www.abarbistro.co.uk/wp-content/uploads/2019/03/beige-background.png")',
+        }}
+      >
         <Toolbar>
           <LocalDiningIcon />
           <Typography variant="h6" className={classes.title}>
