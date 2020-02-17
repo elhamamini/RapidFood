@@ -434,7 +434,7 @@ var AllIngridientys = function (_React$Component) {
             backgroundSize: 'cover',
             //  height:'40rem',
             backgroundRepeat: 'repeat',
-            paddingBottom: '30rem'
+            paddingBottom: '20rem'
           }
         },
         _react2.default.createElement(

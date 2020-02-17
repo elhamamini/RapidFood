@@ -69,7 +69,7 @@ class AllIngridientys extends React.Component {
           backgroundSize: 'cover',
           //  height:'40rem',
           backgroundRepeat: 'repeat',
-          paddingBottom: '30rem',
+          paddingBottom: '20rem',
         }}
       >
         <div
