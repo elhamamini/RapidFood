@@ -3279,63 +3279,52 @@ var setRecipe = exports.setRecipe = function setRecipe() {
 
 var sendIngredient = exports.sendIngredient = function sendIngredient(ing) {
   return function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
-      var recipes, newRecipes;
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
+      var recipes;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context.prev = _context.next) {
             case 0:
-              _context2.next = 2;
+              _context.next = 2;
               return _axios2.default.post('/api/recipes', ing);
 
             case 2:
-              recipes = _context2.sent.data;
-              newRecipes = recipes.filter(function () {
-                var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(recipe) {
-                  var inst;
-                  return regeneratorRuntime.wrap(function _callee$(_context) {
-                    while (1) {
-                      switch (_context.prev = _context.next) {
-                        case 0:
-                          _context.next = 2;
-                          return _axios2.default.get('api/instructions/' + recipe.id);
+              recipes = _context.sent.data;
 
-                        case 2:
-                          inst = _context.sent.data;
 
-                          if (!inst.instructions) {
-                            _context.next = 5;
-                            break;
-                          }
-
-                          return _context.abrupt('return', true);
-
-                        case 5:
-                          return _context.abrupt('return', false);
-
-                        case 6:
-                        case 'end':
-                          return _context.stop();
-                      }
-                    }
-                  }, _callee, undefined);
-                }));
-
-                return function (_x2) {
-                  return _ref2.apply(this, arguments);
-                };
-              }());
+              // let newRecipes = recipes.filter(async recipe => {
+              //   let inst = (await axios.get(`api/instructions/${recipe.id}`)).data;
+              //   if (inst.instructions) {
+              //     return true;
+              //   }
+              //   return false;
+              // });
+              Promise.all(recipes.map(function (recipe) {
+                return _axios2.default.get('api/instructions/' + recipe.id);
+                // if (inst.instructions) {
+                //   return inst.instructions;
+                // }
+                // return null;
+              })).then(function (responses) {
+                return responses.map(function (response) {
+                  return response.data;
+                });
+              }).then(function (recipes) {
+                var filteredRecipes = recipes.filter(function (recipe) {
+                  return recipe.instructions !== null;
+                });
+                // console.log('instructions', instructions);
+                dispatch(getRecipe(filteredRecipes));
+              });
               // console.log('before', recipes.length);
               // console.log('after', newRecipes.length);
 
-              dispatch(getRecipe(newRecipes));
-
-            case 5:
+            case 4:
             case 'end':
-              return _context2.stop();
+              return _context.stop();
           }
         }
-      }, _callee2, undefined);
+      }, _callee, undefined);
     }));
 
     return function (_x) {

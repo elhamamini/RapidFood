@@ -35,16 +35,34 @@ export const sendIngredient = ing => {
   return async dispatch => {
     const recipes = (await axios.post('/api/recipes', ing)).data;
 
-    let newRecipes = recipes.filter(async recipe => {
-      let inst = (await axios.get(`api/instructions/${recipe.id}`)).data;
-      if (inst.instructions) {
-        return true;
-      }
-      return false;
-    });
+    // let newRecipes = recipes.filter(async recipe => {
+    //   let inst = (await axios.get(`api/instructions/${recipe.id}`)).data;
+    //   if (inst.instructions) {
+    //     return true;
+    //   }
+    //   return false;
+    // });
+    Promise.all(
+      recipes.map(recipe => {
+        return axios.get(`api/instructions/${recipe.id}`);
+        // if (inst.instructions) {
+        //   return inst.instructions;
+        // }
+        // return null;
+      })
+    )
+      .then(responses => {
+        return responses.map(response => response.data);
+      })
+      .then(recipes => {
+        const filteredRecipes = recipes.filter(
+          recipe => recipe.instructions !== null
+        );
+        // console.log('instructions', instructions);
+        dispatch(getRecipe(filteredRecipes));
+      });
     // console.log('before', recipes.length);
     // console.log('after', newRecipes.length);
-    dispatch(getRecipe(newRecipes));
   };
 };
 const initialState = [];
