@@ -16,6 +16,7 @@ import Button from '@material-ui/core/Button';
 import { setRecipe, sendIngredient } from '../redux/recipe';
 import { setUpInstructions } from '../redux/instruction';
 import { fetchFavs } from '../redux/favorits';
+import { setUpNutritions } from '../redux/nutrition';
 import Icon from '@material-ui/core/Icon';
 import {
   dairies,
@@ -41,6 +42,7 @@ class AllIngridientys extends React.Component {
     this.props.getRecipe();
     this.props.getInstruction();
     this.props.getFavs();
+    this.props.getNutritions();
   }
   handleChange(event) {
     if (this.state.ingridient.includes(event.target.value) === false) {
@@ -278,7 +280,7 @@ class AllIngridientys extends React.Component {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Fishes</Typography>
+              <Typography>Fish</Typography>
             </ExpansionPanelSummary>
             <div
               style={{
@@ -314,7 +316,7 @@ class AllIngridientys extends React.Component {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Sea Foods</Typography>
+              <Typography>Sea Food</Typography>
             </ExpansionPanelSummary>
             <div
               style={{
@@ -404,6 +406,7 @@ const mapDispatchToProps = dispatch => {
     postIngredient: ing => dispatch(sendIngredient(ing)),
     getInstruction: () => dispatch(setUpInstructions()),
     getFave: () => dispatch(fetchFavs()),
+    getNutritions: () => dispatch(setUpNutritions()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AllIngridientys);

@@ -4,7 +4,6 @@ const { Favorite } = require('../db/index');
 router.get('/', (req, res, next) => {
   Favorite.findAll()
     .then(fav => {
-      console.log('myFave%%%%%%%%%', fav);
       return res.status(200).send(fav);
     })
     .catch(e => {

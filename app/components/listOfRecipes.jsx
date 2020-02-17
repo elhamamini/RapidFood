@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import { recipeDetails } from '../redux/oneRecipe';
 import { setInstruction } from '../redux/instruction';
+import { setNutrition } from '../redux/nutrition';
+import axios from 'axios';
 class ListOfRecipes extends React.Component {
   componentDidMount() {}
   render() {
-    console.log('recepies', this.props.recipes);
     return (
       <div
         style={{
@@ -26,7 +26,7 @@ class ListOfRecipes extends React.Component {
             'url("https://i.pinimg.com/originals/f3/30/3e/f3303eef5505dbb1a1bafda092e50793.jpg")',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
-          paddingBottom:'5rem',
+          paddingBottom: '5rem',
           height: '80',
         }}
       >
@@ -55,6 +55,7 @@ class ListOfRecipes extends React.Component {
                     onClick={() => {
                       this.props.getDetails(recipe.id);
                       this.props.getInstruction(recipe.id);
+                      this.props.getNutrition(recipe.id);
                       this.props.history.push('/recipedetails');
                     }}
                     style={{
@@ -72,13 +73,17 @@ class ListOfRecipes extends React.Component {
     );
   }
 }
-const mapStateToProps = ({ recipes }) => ({ recipes });
+const mapStateToProps = ({ recipes, instruction }) => ({
+  recipes,
+  instruction,
+});
 const mapDispatchToProps = dispatch => {
   return {
     getRecipe: () => dispatch(setRecipe()),
     postIngredient: ing => dispatch(sendIngredient(ing)),
     getDetails: id => dispatch(recipeDetails(id)),
     getInstruction: id => dispatch(setInstruction(id)),
+    getNutrition: id => dispatch(setNutrition(id)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ListOfRecipes);

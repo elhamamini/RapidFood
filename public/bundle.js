@@ -191,8 +191,15 @@ var FaveRecipes = function (_React$Component) {
           }
         },
         _react2.default.createElement(
-          'h2',
-          { style: { marginTop: '2rem', paddingTop: '2rem' } },
+          'h1',
+          {
+            style: {
+              marginTop: '2rem',
+              paddingTop: '2rem',
+              fontWeight: 'bold',
+              color: 'white'
+            }
+          },
           'Your Favorites'
         ),
         _react2.default.createElement(
@@ -354,6 +361,8 @@ var _instruction = __webpack_require__(/*! ../redux/instruction */ "./app/redux/
 
 var _favorits = __webpack_require__(/*! ../redux/favorits */ "./app/redux/favorits.js");
 
+var _nutrition = __webpack_require__(/*! ../redux/nutrition */ "./app/redux/nutrition.js");
+
 var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ "./node_modules/@material-ui/core/esm/Icon/index.js");
 
 var _Icon2 = _interopRequireDefault(_Icon);
@@ -392,6 +401,7 @@ var AllIngridientys = function (_React$Component) {
       this.props.getRecipe();
       this.props.getInstruction();
       this.props.getFavs();
+      this.props.getNutritions();
     }
   }, {
     key: 'handleChange',
@@ -694,7 +704,7 @@ var AllIngridientys = function (_React$Component) {
               _react2.default.createElement(
                 _Typography2.default,
                 null,
-                'Fishes'
+                'Fish'
               )
             ),
             _react2.default.createElement(
@@ -740,7 +750,7 @@ var AllIngridientys = function (_React$Component) {
               _react2.default.createElement(
                 _Typography2.default,
                 null,
-                'Sea Foods'
+                'Sea Food'
               )
             ),
             _react2.default.createElement(
@@ -858,6 +868,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     getFave: function getFave() {
       return dispatch((0, _favorits.fetchFavs)());
+    },
+    getNutritions: function getNutritions() {
+      return dispatch((0, _nutrition.setUpNutritions)());
     }
   };
 };
@@ -925,10 +938,6 @@ var _GridListTileBar = __webpack_require__(/*! @material-ui/core/GridListTileBar
 
 var _GridListTileBar2 = _interopRequireDefault(_GridListTileBar);
 
-var _ListSubheader = __webpack_require__(/*! @material-ui/core/ListSubheader */ "./node_modules/@material-ui/core/esm/ListSubheader/index.js");
-
-var _ListSubheader2 = _interopRequireDefault(_ListSubheader);
-
 var _IconButton = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js");
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
@@ -940,6 +949,12 @@ var _Info2 = _interopRequireDefault(_Info);
 var _oneRecipe = __webpack_require__(/*! ../redux/oneRecipe */ "./app/redux/oneRecipe.js");
 
 var _instruction = __webpack_require__(/*! ../redux/instruction */ "./app/redux/instruction.js");
+
+var _nutrition = __webpack_require__(/*! ../redux/nutrition */ "./app/redux/nutrition.js");
+
+var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -966,7 +981,6 @@ var ListOfRecipes = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log('recepies', this.props.recipes);
       return _react2.default.createElement(
         'div',
         {
@@ -1018,6 +1032,7 @@ var ListOfRecipes = function (_React$Component) {
                     onClick: function onClick() {
                       _this2.props.getDetails(recipe.id);
                       _this2.props.getInstruction(recipe.id);
+                      _this2.props.getNutrition(recipe.id);
                       _this2.props.history.push('/recipedetails');
                     },
                     style: {
@@ -1038,8 +1053,12 @@ var ListOfRecipes = function (_React$Component) {
 }(_react2.default.Component);
 
 var mapStateToProps = function mapStateToProps(_ref) {
-  var recipes = _ref.recipes;
-  return { recipes: recipes };
+  var recipes = _ref.recipes,
+      instruction = _ref.instruction;
+  return {
+    recipes: recipes,
+    instruction: instruction
+  };
 };
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
@@ -1054,6 +1073,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     getInstruction: function getInstruction(id) {
       return dispatch((0, _instruction.setInstruction)(id));
+    },
+    getNutrition: function getNutrition(id) {
+      return dispatch((0, _nutrition.setNutrition)(id));
     }
   };
 };
@@ -1214,11 +1236,12 @@ var Login = function (_Component) {
             maxWidth: 'sm',
             style: {
               marginTop: '5rem',
-              backgroundImage: 'url("https://png.pngtree.com/thumb_back/fw800/background/20190222/ourmid/pngtree-painted-corner-tropical-leaves-background-material-plantposter-backgroundbanner-backgroundbackground-image_50644.jpg")',
+              backgroundImage: 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTO4EGX6Ijp39D1lt0eZOXWpbS7i7Nn2LvyFqfdJcMnjCFkqZYk")',
+              // backgroundColor: 'lime',
 
               width: '20rem',
               height: '20rem',
-              border: 'solid 1px brown',
+
               borderRadius: '10px'
               // backgroundColor:'#bbab9b'
             }
@@ -1493,7 +1516,7 @@ function MenuAppBar(props) {
               { to: '/favorites' },
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: handleClose },
+                { onClick: handleClose, style: { color: 'black' } },
                 'Favorits'
               )
             ),
@@ -1503,6 +1526,7 @@ function MenuAppBar(props) {
               _react2.default.createElement(
                 _MenuItem2.default,
                 {
+                  style: { color: 'black' },
                   onClick: function onClick() {
                     handleClose();
                     props.signout();
@@ -1533,7 +1557,7 @@ function MenuAppBar(props) {
               { to: '/login' },
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: handleClose },
+                { onClick: handleClose, style: { color: 'black' } },
                 'Sign in'
               )
             ),
@@ -1542,7 +1566,7 @@ function MenuAppBar(props) {
               { to: '/signup' },
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: handleClose },
+                { onClick: handleClose, style: { color: 'black' } },
                 'Sign up'
               )
             )
@@ -1631,8 +1655,6 @@ var _Typography = __webpack_require__(/*! @material-ui/core/Typography */ "./nod
 
 var _Typography2 = _interopRequireDefault(_Typography);
 
-var _colors = __webpack_require__(/*! @material-ui/core/colors */ "./node_modules/@material-ui/core/esm/colors/index.js");
-
 var _Favorite = __webpack_require__(/*! @material-ui/icons/Favorite */ "./node_modules/@material-ui/icons/Favorite.js");
 
 var _Favorite2 = _interopRequireDefault(_Favorite);
@@ -1652,6 +1674,38 @@ var _MoreVert2 = _interopRequireDefault(_MoreVert);
 var _activeUser = __webpack_require__(/*! ../redux/activeUser */ "./app/redux/activeUser.js");
 
 var _favorits = __webpack_require__(/*! ../redux/favorits */ "./app/redux/favorits.js");
+
+var _Table = __webpack_require__(/*! @material-ui/core/Table */ "./node_modules/@material-ui/core/esm/Table/index.js");
+
+var _Table2 = _interopRequireDefault(_Table);
+
+var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ "./node_modules/@material-ui/core/esm/TableBody/index.js");
+
+var _TableBody2 = _interopRequireDefault(_TableBody);
+
+var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ "./node_modules/@material-ui/core/esm/TableCell/index.js");
+
+var _TableCell2 = _interopRequireDefault(_TableCell);
+
+var _TableContainer = __webpack_require__(/*! @material-ui/core/TableContainer */ "./node_modules/@material-ui/core/esm/TableContainer/index.js");
+
+var _TableContainer2 = _interopRequireDefault(_TableContainer);
+
+var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ "./node_modules/@material-ui/core/esm/TableHead/index.js");
+
+var _TableHead2 = _interopRequireDefault(_TableHead);
+
+var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ "./node_modules/@material-ui/core/esm/TableRow/index.js");
+
+var _TableRow2 = _interopRequireDefault(_TableRow);
+
+var _Paper = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
+
+var _Paper2 = _interopRequireDefault(_Paper);
+
+var _Divider = __webpack_require__(/*! @material-ui/core/Divider */ "./node_modules/@material-ui/core/esm/Divider/index.js");
+
+var _Divider2 = _interopRequireDefault(_Divider);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1681,11 +1735,6 @@ var useStyles = (0, _styles.makeStyles)(function (theme) {
 });
 
 function RecipeDetails(props) {
-  console.log('my recipe', props.recipe);
-  console.log('instruction', props.instruction);
-  if (props.activeUser.recipeId.includes(props.recipe.id)) {
-    _IconButton2.default.disabled = true;
-  }
   var classes = useStyles();
 
   var _React$useState = _react2.default.useState(false),
@@ -1696,7 +1745,8 @@ function RecipeDetails(props) {
   var handleExpandClick = function handleExpandClick() {
     setExpanded(!expanded);
   };
-  console.log('activeUserrrrrrrr@@@@@', props.activeUser);
+  console.log('nutrition', props.nutrition);
+  console.log('instruction', props.instruction);
   return _react2.default.createElement(
     'div',
     {
@@ -1736,6 +1786,20 @@ function RecipeDetails(props) {
       _react2.default.createElement(
         _CardContent2.default,
         null,
+        props.nutrition.readyInMinutes && _react2.default.createElement(
+          _Typography2.default,
+          { paragraph: true },
+          'Total Time:',
+          props.nutrition.readyInMinutes,
+          ' minutes'
+        ),
+        props.nutrition.servings && _react2.default.createElement(
+          _Typography2.default,
+          { paragraph: true },
+          'Serving Size:',
+          props.nutrition.servings,
+          ' servings'
+        ),
         _react2.default.createElement(
           _Typography2.default,
           { paragraph: true, variant: 'h6' },
@@ -1812,21 +1876,99 @@ function RecipeDetails(props) {
             { paragraph: true, variant: 'h6' },
             'Method:'
           ),
-          _react2.default.createElement(_Typography2.default, { paragraph: true }),
-          _react2.default.createElement(
+          props.instruction.instructions ? _react2.default.createElement(
             _Typography2.default,
             { paragraph: true },
             props.instruction.instructions
-          ),
-          _react2.default.createElement(
+          ) : _react2.default.createElement(
             _Typography2.default,
             { paragraph: true },
-            'Nutricion Facts'
+            'Sorry! cant find matching recipe'
           ),
-          _react2.default.createElement(_Typography2.default, { paragraph: true }),
+          _react2.default.createElement(
+            'h1',
+            null,
+            '...................................'
+          ),
+          props.nutrition.nutrition ? _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              _Typography2.default,
+              { paragraph: true },
+              'Nutritional Guidelines:'
+            ),
+            _react2.default.createElement(
+              _TableContainer2.default,
+              { component: _Paper2.default },
+              _react2.default.createElement(
+                _Table2.default,
+                { 'aria-label': 'simple table' },
+                _react2.default.createElement(
+                  _TableHead2.default,
+                  null,
+                  _react2.default.createElement(
+                    _TableRow2.default,
+                    null,
+                    _react2.default.createElement(
+                      _TableCell2.default,
+                      { align: 'right' },
+                      'Calories'
+                    ),
+                    _react2.default.createElement(
+                      _TableCell2.default,
+                      { align: 'right' },
+                      'Fat\xA0(%)'
+                    ),
+                    _react2.default.createElement(
+                      _TableCell2.default,
+                      { align: 'right' },
+                      'Carbs\xA0(%)'
+                    ),
+                    _react2.default.createElement(
+                      _TableCell2.default,
+                      { align: 'right' },
+                      'Protein\xA0(%)'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  _TableBody2.default,
+                  null,
+                  _react2.default.createElement(
+                    _TableRow2.default,
+                    null,
+                    _react2.default.createElement(
+                      _TableCell2.default,
+                      { align: 'right' },
+                      Math.ceil(props.nutrition.nutrition.nutrients[0].amount)
+                    ),
+                    _react2.default.createElement(
+                      _TableCell2.default,
+                      { align: 'right' },
+                      props.nutrition.nutrition.caloricBreakdown.percentFat
+                    ),
+                    _react2.default.createElement(
+                      _TableCell2.default,
+                      { align: 'right' },
+                      props.nutrition.nutrition.caloricBreakdown.percentCarbs
+                    ),
+                    _react2.default.createElement(
+                      _TableCell2.default,
+                      { align: 'right' },
+                      props.nutrition.nutrition.caloricBreakdown.percentProtein
+                    )
+                  )
+                )
+              )
+            )
+          ) : null,
           _react2.default.createElement(
             _Typography2.default,
-            { variant: 'body1', style: { marginLeft: '8rem' } },
+            {
+              variant: 'body1',
+              style: { marginLeft: '8rem', paddingTop: '1rem' }
+            },
             'Bon Appetit!'
           )
         )
@@ -1838,11 +1980,13 @@ function RecipeDetails(props) {
 var mapStateToProps = function mapStateToProps(_ref) {
   var recipe = _ref.recipe,
       instruction = _ref.instruction,
-      activeUser = _ref.activeUser;
+      activeUser = _ref.activeUser,
+      nutrition = _ref.nutrition;
   return {
     recipe: recipe,
     instruction: instruction,
-    activeUser: activeUser
+    activeUser: activeUser,
+    nutrition: nutrition
   };
 };
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -2144,7 +2288,7 @@ var SignUp = function (_Component) {
         'div',
         {
           style: {
-            backgroundColor: 'lightGrey',
+            backgroundImage: 'url("https://www.foodwise.com.au/wp-content/themes/foodwise/images/bg-6.jpg")',
             height: '40rem',
             paddingTop: '5rem'
           }
@@ -2156,7 +2300,8 @@ var SignUp = function (_Component) {
             maxWidth: 'sm',
             style: {
               marginTop: '3rem',
-              backgroundColor: 'lightPink',
+              borderRadius: '3rem',
+              backgroundImage: 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTO4EGX6Ijp39D1lt0eZOXWpbS7i7Nn2LvyFqfdJcMnjCFkqZYk")',
               width: '30rem',
               height: '30rem'
             }
@@ -2168,12 +2313,18 @@ var SignUp = function (_Component) {
               style: {
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center'
+                alignItems: 'center',
+                borderRadius: '2rem'
               }
             },
             _react2.default.createElement(
               _core.Typography,
-              { variant: 'h4', color: 'textSecondary', align: 'center' },
+              {
+                variant: 'h4',
+                color: 'textSecondary',
+                align: 'center',
+                style: { paddingTop: '1rem' }
+              },
               'Sign up'
             ),
             _react2.default.createElement(
@@ -2244,7 +2395,10 @@ var SignUp = function (_Component) {
                   { item: true },
                   _react2.default.createElement(
                     _reactRouterDom.Link,
-                    { to: '/login', style: { textDecoration: 'none' } },
+                    {
+                      to: '/login',
+                      style: { textDecoration: 'none', color: 'black' }
+                    },
                     'Do you have an account? Log in'
                   )
                 )
@@ -2843,6 +2997,10 @@ var _favorits = __webpack_require__(/*! ./favorits */ "./app/redux/favorits.js")
 
 var _favorits2 = _interopRequireDefault(_favorits);
 
+var _nutrition = __webpack_require__(/*! ./nutrition */ "./app/redux/nutrition.js");
+
+var _nutrition2 = _interopRequireDefault(_nutrition);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var appReduer = (0, _redux.combineReducers)({
@@ -2851,7 +3009,8 @@ var appReduer = (0, _redux.combineReducers)({
   instruction: _instruction2.default,
   authentication: _authentication2.default,
   activeUser: _activeUser2.default,
-  favorits: _favorits2.default
+  favorits: _favorits2.default,
+  nutrition: _nutrition2.default
 });
 
 exports.default = appReduer;
@@ -2898,8 +3057,8 @@ var setUpInstructions = exports.setUpInstructions = function setUpInstructions()
 
 var setInstruction = exports.setInstruction = function setInstruction(id) {
   return function (dispatch) {
-    return _axios2.default.post('/api/instructions', { id: id }).then(function (res) {
-      console.log('ressss', res);
+    return _axios2.default.get('/api/instructions/' + id).then(function (res) {
+      console.log('ressss redux', res.data);
       return dispatch(getInstruction(res.data));
     }).catch(function (e) {
       return console.log('Error in thunk:', e.message);
@@ -2920,6 +3079,70 @@ var instructionReducer = function instructionReducer() {
   }
 };
 exports.default = instructionReducer;
+
+/***/ }),
+
+/***/ "./app/redux/nutrition.js":
+/*!********************************!*\
+  !*** ./app/redux/nutrition.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setNutrition = exports.setUpNutritions = undefined;
+
+var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var GET_NUTRITION = 'GET_NUTRITION';
+var getNutrition = function getNutrition(nutrition) {
+  return {
+    type: GET_NUTRITION,
+    nutrition: nutrition
+  };
+};
+var setUpNutritions = exports.setUpNutritions = function setUpNutritions() {
+  return function (dispatch) {
+    return _axios2.default.get('/api/nutritions').then(function (res) {
+      return dispatch(getNutrition(res.data));
+    }).catch(function (e) {
+      return console.log('error in thunk:', e.message);
+    });
+  };
+};
+
+var setNutrition = exports.setNutrition = function setNutrition(id) {
+  return function (dispatch) {
+    return _axios2.default.post('/api/nutritions', { id: id }).then(function (res) {
+      return dispatch(getNutrition(res.data));
+    }).catch(function (e) {
+      return console.log('Error in thunk:', e.message);
+    });
+  };
+};
+var initialState = {};
+
+var nutritionReducer = function nutritionReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case GET_NUTRITION:
+      return action.nutrition;
+    default:
+      return state;
+  }
+};
+exports.default = nutritionReducer;
 
 /***/ }),
 
@@ -3019,6 +3242,8 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var GET_RECIPE = 'GET_RECIPE';
 var PICK_INGREDIENT = 'PICK_INGREDIENT';
 var getIngredient = exports.getIngredient = function getIngredient(ingredient) {
@@ -3043,14 +3268,80 @@ var setRecipe = exports.setRecipe = function setRecipe() {
     });
   };
 };
-var sendIngredient = exports.sendIngredient = function sendIngredient(ingredient) {
-  return function (dispatch) {
-    return _axios2.default.post('/api/recipes', ingredient).then(function (res) {
-      return dispatch(getRecipe(res.data));
-    }).catch(function (e) {
-      return console.log('error in thunk:', e.message);
-    });
-  };
+// export const sendIngredient = ingredient => {
+//   return dispatch => {
+//     return axios
+//       .post('/api/recipes', ingredient)
+//       .then(res => dispatch(getRecipe(res.data)))
+//       .catch(e => console.log('error in thunk:', e.message));
+//   };
+// };
+
+var sendIngredient = exports.sendIngredient = function sendIngredient(ing) {
+  return function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
+      var recipes, newRecipes;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _axios2.default.post('/api/recipes', ing);
+
+            case 2:
+              recipes = _context2.sent.data;
+              newRecipes = recipes.filter(function () {
+                var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(recipe) {
+                  var inst;
+                  return regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                      switch (_context.prev = _context.next) {
+                        case 0:
+                          _context.next = 2;
+                          return _axios2.default.get('api/instructions/' + recipe.id);
+
+                        case 2:
+                          inst = _context.sent.data;
+
+                          if (!inst.instructions) {
+                            _context.next = 5;
+                            break;
+                          }
+
+                          return _context.abrupt('return', true);
+
+                        case 5:
+                          return _context.abrupt('return', false);
+
+                        case 6:
+                        case 'end':
+                          return _context.stop();
+                      }
+                    }
+                  }, _callee, undefined);
+                }));
+
+                return function (_x2) {
+                  return _ref2.apply(this, arguments);
+                };
+              }());
+              // console.log('before', recipes.length);
+              // console.log('after', newRecipes.length);
+
+              dispatch(getRecipe(newRecipes));
+
+            case 5:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, undefined);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
 };
 var initialState = [];
 

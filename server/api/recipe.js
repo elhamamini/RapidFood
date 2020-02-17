@@ -16,11 +16,6 @@ router.get('/', (req, res, next) => {
     });
 });
 router.post('/', (req, res, next) => {
-  // const listOfIngredients = Object.keys(req.body).filter(
-  //   indig => req.body[indig]
-  // );
-  console.log('req.body', req.body);
-
   let listStr = '';
 
   for (let i = 0; i < req.body.length; i++) {
@@ -32,7 +27,7 @@ router.post('/', (req, res, next) => {
 
   axios
     .get(
-      `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${listStr}&number=2&apiKey=${YOURAPIKEY1}&ranking=1&includeInstruction=true`
+      `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${listStr}&number=10&apiKey=${YOURAPIKEY1}&ranking=1&includeInstruction=true`
     )
     .then(recipe => {
       res.send(recipe.data);

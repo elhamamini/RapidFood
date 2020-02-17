@@ -111,7 +111,8 @@ class SignUp extends Component {
     return (
       <div
         style={{
-          backgroundColor: 'lightGrey',
+          backgroundImage:
+            'url("https://www.foodwise.com.au/wp-content/themes/foodwise/images/bg-6.jpg")',
           height: '40rem',
           paddingTop: '5rem',
         }}
@@ -121,7 +122,9 @@ class SignUp extends Component {
           maxWidth="sm"
           style={{
             marginTop: '3rem',
-            backgroundColor: 'lightPink',
+            borderRadius: '3rem',
+            backgroundImage:
+              'url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTO4EGX6Ijp39D1lt0eZOXWpbS7i7Nn2LvyFqfdJcMnjCFkqZYk")',
             width: '30rem',
             height: '30rem',
           }}
@@ -132,9 +135,15 @@ class SignUp extends Component {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              borderRadius: '2rem',
             }}
           >
-            <Typography variant="h4" color="textSecondary" align="center">
+            <Typography
+              variant="h4"
+              color="textSecondary"
+              align="center"
+              style={{ paddingTop: '1rem' }}
+            >
               Sign up
             </Typography>
             <form
@@ -189,7 +198,10 @@ class SignUp extends Component {
               </Button>
               <Grid container justify="flex-end" style={{ margin: '6px' }}>
                 <Grid item>
-                  <Link to="/login" style={{ textDecoration: 'none' }}>
+                  <Link
+                    to="/login"
+                    style={{ textDecoration: 'none', color: 'black' }}
+                  >
                     Do you have an account? Log in
                   </Link>
                 </Grid>

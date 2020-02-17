@@ -39,9 +39,16 @@ class FaveRecipes extends React.Component {
           height: '80',
         }}
       >
-        <h2 style={{ marginTop: '2rem', paddingTop: '2rem' ,fontWeight:'bold'}}>
+        <h1
+          style={{
+            marginTop: '2rem',
+            paddingTop: '2rem',
+            fontWeight: 'bold',
+            color: 'white',
+          }}
+        >
           Your Favorites
-        </h2>
+        </h1>
         <GridList
           cellHeight={180}
           style={{

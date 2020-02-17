@@ -106,11 +106,12 @@ class Login extends Component {
           style={{
             marginTop: '5rem',
             backgroundImage:
-              'url("https://png.pngtree.com/thumb_back/fw800/background/20190222/ourmid/pngtree-painted-corner-tropical-leaves-background-material-plantposter-backgroundbanner-backgroundbackground-image_50644.jpg")',
+              'url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTO4EGX6Ijp39D1lt0eZOXWpbS7i7Nn2LvyFqfdJcMnjCFkqZYk")',
+            // backgroundColor: 'lime',
 
             width: '20rem',
             height: '20rem',
-            border: 'solid 1px brown',
+
             borderRadius: '10px',
             // backgroundColor:'#bbab9b'
           }}

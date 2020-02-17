@@ -97,10 +97,13 @@ function MenuAppBar(props) {
                 onClose={handleClose}
               >
                 <Link to="/favorites">
-                  <MenuItem onClick={handleClose}>Favorits</MenuItem>
+                  <MenuItem onClick={handleClose} style={{ color: 'black' }}>
+                    Favorits
+                  </MenuItem>
                 </Link>
                 <Link to="/">
                   <MenuItem
+                    style={{ color: 'black' }}
                     onClick={() => {
                       handleClose();
                       props.signout();
@@ -127,10 +130,14 @@ function MenuAppBar(props) {
                 onClose={handleClose}
               >
                 <Link to="/login">
-                  <MenuItem onClick={handleClose}>Sign in</MenuItem>
+                  <MenuItem onClick={handleClose} style={{ color: 'black' }}>
+                    Sign in
+                  </MenuItem>
                 </Link>
                 <Link to="/signup">
-                  <MenuItem onClick={handleClose}>Sign up</MenuItem>
+                  <MenuItem onClick={handleClose} style={{ color: 'black' }}>
+                    Sign up
+                  </MenuItem>
                 </Link>
               </Menu>
             )}

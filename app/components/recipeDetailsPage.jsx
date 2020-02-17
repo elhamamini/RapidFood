@@ -11,13 +11,20 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { addRecipeId } from '../redux/activeUser';
 import { createFav } from '../redux/favorits';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
 const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 345,
@@ -40,18 +47,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function RecipeDetails(props) {
-  console.log('my recipe', props.recipe);
-  console.log('instruction', props.instruction);
-  if (props.activeUser.recipeId.includes(props.recipe.id)) {
-    IconButton.disabled = true;
-  }
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  console.log('activeUserrrrrrrr@@@@@', props.activeUser);
+  console.log('nutrition', props.nutrition);
+  console.log('instruction', props.instruction);
   return (
     <div
       style={{
@@ -87,10 +90,16 @@ function RecipeDetails(props) {
           title="Paella dish"
         />
         <CardContent>
-          {/* <Typography paragraph>
-            prep time: {props.instruction.preparationMinutes}minutes {'    '}
-            cooking time: {props.instruction.cookingMinutes}minutes
-          </Typography> */}
+          {props.nutrition.readyInMinutes && (
+            <Typography paragraph>
+              Total Time:{props.nutrition.readyInMinutes} minutes
+            </Typography>
+          )}
+          {props.nutrition.servings && (
+            <Typography paragraph>
+              Serving Size:{props.nutrition.servings} servings
+            </Typography>
+          )}
           <Typography paragraph variant="h6">
             Ingredients:
           </Typography>
@@ -100,10 +109,7 @@ function RecipeDetails(props) {
             ))}
           {props.recipe.usedIngredients &&
             props.recipe.usedIngredients.map(ingrid => (
-              <li key={ingrid.name}>
-                {ingrid.original}
-                {/* {ingrid.name} : {ingrid.amount} {ingrid.unit} */}
-              </li>
+              <li key={ingrid.name}>{ingrid.original}</li>
             ))}
         </CardContent>
 
@@ -153,12 +159,66 @@ function RecipeDetails(props) {
             <Typography paragraph variant="h6">
               Method:
             </Typography>
-            <Typography paragraph></Typography>
 
-            <Typography paragraph>{props.instruction.instructions}</Typography>
-            <Typography paragraph>Nutricion Facts</Typography>
-            <Typography paragraph></Typography>
-            <Typography variant="body1" style={{ marginLeft: '8rem' }}>
+            {props.instruction.instructions ? (
+              <Typography paragraph>
+                {props.instruction.instructions}
+              </Typography>
+            ) : (
+              <Typography paragraph>
+                Sorry! cant find matching recipe
+              </Typography>
+            )}
+            <h1>...................................</h1>
+            {props.nutrition.nutrition ? (
+              <div>
+                <Typography paragraph>Nutritional Guidelines:</Typography>
+                <TableContainer component={Paper}>
+                  <Table aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell align="right">Calories</TableCell>
+                        <TableCell align="right">Fat&nbsp;(%)</TableCell>
+                        <TableCell align="right">Carbs&nbsp;(%)</TableCell>
+                        <TableCell align="right">Protein&nbsp;(%)</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell align="right">
+                          {Math.ceil(
+                            props.nutrition.nutrition.nutrients[0].amount
+                          )}
+                        </TableCell>
+                        <TableCell align="right">
+                          {
+                            props.nutrition.nutrition.caloricBreakdown
+                              .percentFat
+                          }
+                        </TableCell>
+                        <TableCell align="right">
+                          {
+                            props.nutrition.nutrition.caloricBreakdown
+                              .percentCarbs
+                          }
+                        </TableCell>
+                        <TableCell align="right">
+                          {
+                            props.nutrition.nutrition.caloricBreakdown
+                              .percentProtein
+                          }
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </div>
+            ) : null}
+
+            <Typography
+              variant="body1"
+              style={{ marginLeft: '8rem', paddingTop: '1rem' }}
+            >
               Bon Appetit!
             </Typography>
           </CardContent>
@@ -168,10 +228,11 @@ function RecipeDetails(props) {
   );
 }
 
-const mapStateToProps = ({ recipe, instruction, activeUser }) => ({
+const mapStateToProps = ({ recipe, instruction, activeUser, nutrition }) => ({
   recipe,
   instruction,
   activeUser,
+  nutrition,
 });
 const mapDispatchToProps = dispatch => {
   return {

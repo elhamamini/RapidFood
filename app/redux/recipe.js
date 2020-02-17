@@ -22,12 +22,29 @@ export const setRecipe = () => {
       .catch(e => console.log('error in thunk:', e.message));
   };
 };
-export const sendIngredient = ingredient => {
-  return dispatch => {
-    return axios
-      .post('/api/recipes', ingredient)
-      .then(res => dispatch(getRecipe(res.data)))
-      .catch(e => console.log('error in thunk:', e.message));
+// export const sendIngredient = ingredient => {
+//   return dispatch => {
+//     return axios
+//       .post('/api/recipes', ingredient)
+//       .then(res => dispatch(getRecipe(res.data)))
+//       .catch(e => console.log('error in thunk:', e.message));
+//   };
+// };
+
+export const sendIngredient = ing => {
+  return async dispatch => {
+    const recipes = (await axios.post('/api/recipes', ing)).data;
+
+    let newRecipes = recipes.filter(async recipe => {
+      let inst = (await axios.get(`api/instructions/${recipe.id}`)).data;
+      if (inst.instructions) {
+        return true;
+      }
+      return false;
+    });
+    // console.log('before', recipes.length);
+    // console.log('after', newRecipes.length);
+    dispatch(getRecipe(newRecipes));
   };
 };
 const initialState = [];

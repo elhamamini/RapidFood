@@ -18,9 +18,9 @@ export const setUpInstructions = () => {
 export const setInstruction = id => {
   return dispatch => {
     return axios
-      .post('/api/instructions', { id })
+      .get(`/api/instructions/${id}`)
       .then(res => {
-        console.log('ressss', res);
+        console.log('ressss redux', res.data);
         return dispatch(getInstruction(res.data));
       })
       .catch(e => console.log('Error in thunk:', e.message));

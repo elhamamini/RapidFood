@@ -5,6 +5,7 @@ import recipeDetailsReducer from './oneRecipe';
 import authenticationReducer from './authentication';
 import activeUserReducer from './activeUser';
 import favoritsReducer from './favorits';
+import nutritionReducer from './nutrition';
 const appReduer = combineReducers({
   recipes: recipeReducer,
   recipe: recipeDetailsReducer,
@@ -12,6 +13,7 @@ const appReduer = combineReducers({
   authentication: authenticationReducer,
   activeUser: activeUserReducer,
   favorits: favoritsReducer,
+  nutrition: nutritionReducer,
 });
 
 export default appReduer;

@@ -8,23 +8,40 @@ router.get('/', (req, res, next) => {
       `https://api.spoonacular.com/recipes/716429/information?includeInstruction=true&apiKey=${YOURAPIKEY1}`
     )
     .then(resp => {
-      console.log('recipeeeeee', resp);
       res.send(resp.data);
     })
     .catch(e => {
       console.error(e);
     });
 });
-router.post('/', (req, res, next) => {
-  const { id } = req.body;
-  const newId = Number(id);
-  console.log('newId@@@', newId);
+// router.post('/', (req, res, next) => {
+//   console.log('bodyyyyy$$$$$', req.body);
+//   const { id } = req.body;
+
+//   const newId = Number(id);
+//   axios
+//     .get(
+//       `https://api.spoonacular.com/recipes/${newId}/information?includeInstruction=true&apiKey=${YOURAPIKEY1}`
+//     )
+//     .then(recipe => {
+//       res.status(201).send(recipe.data);
+//     })
+//     .catch(e => {
+//       console.error(e.message);
+//       next(e);
+//     });
+// });
+router.get('/:id', (req, res, next) => {
+  // console.log('bodyyyyy$$$$$', req.body);
+  // const { id } = req.body;
+  console.log('iddd$$$$', req.params);
+  const newId = Number(req.params.id);
   axios
     .get(
       `https://api.spoonacular.com/recipes/${newId}/information?includeInstruction=true&apiKey=${YOURAPIKEY1}`
     )
     .then(recipe => {
-      console.log('recipeInstruct########', recipe);
+      console.log('recipe server', recipe.data);
       res.status(201).send(recipe.data);
     })
     .catch(e => {
