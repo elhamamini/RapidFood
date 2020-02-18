@@ -1745,7 +1745,7 @@ function RecipeDetails(props) {
   var handleExpandClick = function handleExpandClick() {
     setExpanded(!expanded);
   };
-  console.log('nutrition', props.nutrition);
+  console.log('recipe', props.recipe);
   console.log('instruction', props.instruction);
   return _react2.default.createElement(
     'div',
@@ -3242,8 +3242,6 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
 var GET_RECIPE = 'GET_RECIPE';
 var PICK_INGREDIENT = 'PICK_INGREDIENT';
 var getIngredient = exports.getIngredient = function getIngredient(ingredient) {
@@ -3268,70 +3266,58 @@ var setRecipe = exports.setRecipe = function setRecipe() {
     });
   };
 };
-// export const sendIngredient = ingredient => {
-//   return dispatch => {
-//     return axios
-//       .post('/api/recipes', ingredient)
-//       .then(res => dispatch(getRecipe(res.data)))
-//       .catch(e => console.log('error in thunk:', e.message));
+var sendIngredient = exports.sendIngredient = function sendIngredient(ingredient) {
+  return function (dispatch) {
+    return _axios2.default.post('/api/recipes', ingredient).then(function (res) {
+      return dispatch(getRecipe(res.data));
+    }).catch(function (e) {
+      return console.log('error in thunk:', e.message);
+    });
+  };
+};
+
+// export const sendIngredient = ing => {
+//   return async dispatch => {
+//     const recipes = (await axios.post('/api/recipes', ing)).data;
+
+//     // const recipes = []
+//     // for (const id of recipeIds){
+//     //   const recipe = (await axios.post('/api/recipes', ing)).data;
+//     //   const recipeWithInstructions = await (axios.get(`api/instructions/${recipe.id}`)).data
+//     //   if(recipeWithIntructions.instructions){
+//     //     recipes.push(incomingRecipe)
+//     //   }
+//     // }
+//     // let newRecipes = recipes.filter(async recipe => {
+//     //   let inst = (await axios.get(`api/instructions/${recipe.id}`)).data;
+//     //   if (inst.instructions) {
+//     //     return true;
+//     //   }
+//     //   return false;
+//     // });
+//     Promise.all(
+//       recipes.map(recipe => {
+//         return axios.get(`api/instructions/${recipe.id}`);
+//         // if (inst.instructions) {
+//         //   return inst.instructions;
+//         // }
+//         // return null;
+//       })
+//     )
+//       .then(responses => {
+//         return responses.map(response => response.data);
+//       })
+//       .then(recipes => {
+//         const filteredRecipes = recipes.filter(
+//           recipe => recipe.instructions !== null
+//         );
+//         // console.log('instructions', instructions);
+//         dispatch(getRecipe(filteredRecipes));
+//       });
+//     // console.log('before', recipes.length);
+//     // console.log('after', newRecipes.length);
 //   };
 // };
-
-var sendIngredient = exports.sendIngredient = function sendIngredient(ing) {
-  return function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
-      var recipes;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _axios2.default.post('/api/recipes', ing);
-
-            case 2:
-              recipes = _context.sent.data;
-
-
-              // let newRecipes = recipes.filter(async recipe => {
-              //   let inst = (await axios.get(`api/instructions/${recipe.id}`)).data;
-              //   if (inst.instructions) {
-              //     return true;
-              //   }
-              //   return false;
-              // });
-              Promise.all(recipes.map(function (recipe) {
-                return _axios2.default.get('api/instructions/' + recipe.id);
-                // if (inst.instructions) {
-                //   return inst.instructions;
-                // }
-                // return null;
-              })).then(function (responses) {
-                return responses.map(function (response) {
-                  return response.data;
-                });
-              }).then(function (recipes) {
-                var filteredRecipes = recipes.filter(function (recipe) {
-                  return recipe.instructions !== null;
-                });
-                // console.log('instructions', instructions);
-                dispatch(getRecipe(filteredRecipes));
-              });
-              // console.log('before', recipes.length);
-              // console.log('after', newRecipes.length);
-
-            case 4:
-            case 'end':
-              return _context.stop();
-          }
-        }
-      }, _callee, undefined);
-    }));
-
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-};
 var initialState = [];
 
 var recipeReducer = function recipeReducer() {

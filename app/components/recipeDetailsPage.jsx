@@ -53,7 +53,7 @@ function RecipeDetails(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  console.log('nutrition', props.nutrition);
+  console.log('recipe', props.recipe);
   console.log('instruction', props.instruction);
   return (
     <div

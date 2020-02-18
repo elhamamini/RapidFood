@@ -22,49 +22,57 @@ export const setRecipe = () => {
       .catch(e => console.log('error in thunk:', e.message));
   };
 };
-// export const sendIngredient = ingredient => {
-//   return dispatch => {
-//     return axios
-//       .post('/api/recipes', ingredient)
-//       .then(res => dispatch(getRecipe(res.data)))
-//       .catch(e => console.log('error in thunk:', e.message));
-//   };
-// };
-
-export const sendIngredient = ing => {
-  return async dispatch => {
-    const recipes = (await axios.post('/api/recipes', ing)).data;
-
-    // let newRecipes = recipes.filter(async recipe => {
-    //   let inst = (await axios.get(`api/instructions/${recipe.id}`)).data;
-    //   if (inst.instructions) {
-    //     return true;
-    //   }
-    //   return false;
-    // });
-    Promise.all(
-      recipes.map(recipe => {
-        return axios.get(`api/instructions/${recipe.id}`);
-        // if (inst.instructions) {
-        //   return inst.instructions;
-        // }
-        // return null;
-      })
-    )
-      .then(responses => {
-        return responses.map(response => response.data);
-      })
-      .then(recipes => {
-        const filteredRecipes = recipes.filter(
-          recipe => recipe.instructions !== null
-        );
-        // console.log('instructions', instructions);
-        dispatch(getRecipe(filteredRecipes));
-      });
-    // console.log('before', recipes.length);
-    // console.log('after', newRecipes.length);
+export const sendIngredient = ingredient => {
+  return dispatch => {
+    return axios
+      .post('/api/recipes', ingredient)
+      .then(res => dispatch(getRecipe(res.data)))
+      .catch(e => console.log('error in thunk:', e.message));
   };
 };
+
+// export const sendIngredient = ing => {
+//   return async dispatch => {
+//     const recipes = (await axios.post('/api/recipes', ing)).data;
+
+//     // const recipes = []
+//     // for (const id of recipeIds){
+//     //   const recipe = (await axios.post('/api/recipes', ing)).data;
+//     //   const recipeWithInstructions = await (axios.get(`api/instructions/${recipe.id}`)).data
+//     //   if(recipeWithIntructions.instructions){
+//     //     recipes.push(incomingRecipe)
+//     //   }
+//     // }
+//     // let newRecipes = recipes.filter(async recipe => {
+//     //   let inst = (await axios.get(`api/instructions/${recipe.id}`)).data;
+//     //   if (inst.instructions) {
+//     //     return true;
+//     //   }
+//     //   return false;
+//     // });
+//     Promise.all(
+//       recipes.map(recipe => {
+//         return axios.get(`api/instructions/${recipe.id}`);
+//         // if (inst.instructions) {
+//         //   return inst.instructions;
+//         // }
+//         // return null;
+//       })
+//     )
+//       .then(responses => {
+//         return responses.map(response => response.data);
+//       })
+//       .then(recipes => {
+//         const filteredRecipes = recipes.filter(
+//           recipe => recipe.instructions !== null
+//         );
+//         // console.log('instructions', instructions);
+//         dispatch(getRecipe(filteredRecipes));
+//       });
+//     // console.log('before', recipes.length);
+//     // console.log('after', newRecipes.length);
+//   };
+// };
 const initialState = [];
 
 const recipeReducer = (state = initialState, action) => {
