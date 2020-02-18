@@ -5,7 +5,7 @@ const YOURAPIKEY1 = '4eb2324500044e01a12fb1404ab51713';
 router.get('/', (req, res, next) => {
   axios
     .get(
-      `https://api.spoonacular.com/recipes/716429/information?includeInstruction=true&apiKey=${YOURAPIKEY1}`
+      `https://api.spoonacular.com/recipes/716429/information?includeInstruction=true&apiKey=${YOURAPIKEY}`
     )
     .then(resp => {
       res.send(resp.data);
@@ -38,10 +38,9 @@ router.get('/:id', (req, res, next) => {
   const newId = Number(req.params.id);
   axios
     .get(
-      `https://api.spoonacular.com/recipes/${newId}/information?includeInstruction=true&apiKey=${YOURAPIKEY1}`
+      `https://api.spoonacular.com/recipes/${newId}/information?includeInstruction=true&apiKey=${YOURAPIKEY}`
     )
     .then(recipe => {
-      console.log('recipe server', recipe.data);
       res.status(201).send(recipe.data);
     })
     .catch(e => {

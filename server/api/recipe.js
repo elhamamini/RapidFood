@@ -6,7 +6,7 @@ const YOURAPIKEY1 = '4eb2324500044e01a12fb1404ab51713';
 router.get('/', (req, res, next) => {
   axios
     .get(
-      `https://api.spoonacular.com/recipes/findByIngredients?ingredients=bananas,+flour,+sugar&number=2&apiKey=${YOURAPIKEY1}`
+      `https://api.spoonacular.com/recipes/findByIngredients?ingredients=bananas,+flour,+sugar&number=2&apiKey=${YOURAPIKEY}`
     )
     .then(resp => {
       res.send(resp.data[0]);
@@ -27,7 +27,7 @@ router.post('/', (req, res, next) => {
 
   axios
     .get(
-      `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${listStr}&number=10&apiKey=${YOURAPIKEY1}&ranking=1&includeInstruction=true`
+      `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${listStr}&number=10&apiKey=${YOURAPIKEY}&ranking=1&includeInstruction=true`
     )
     .then(recipe => {
       res.send(recipe.data);
